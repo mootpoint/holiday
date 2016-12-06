@@ -57,7 +57,7 @@ minetest.register_node('christmas:present_green', {
 		'christmas_present_green_side.png',
 		'christmas_present_green_side.png'
 	},
-	groups = {oddly_breakable_by_hand = 3},
+	groups = {cracky = 2, crumbly = 2, choppy = 2, oddly_breakable_by_hand = 2, melts = 2, icemaker = 1},
 	
 })
 
@@ -73,7 +73,6 @@ minetest.register_node('christmas:snowman_head', {
 		'christmas_snowman_head_side.png',
 		'christmas_snowman_head_side.png',
 	},
-	groups = {oddly_breakable_by_hand = 1},
 
 	node_box = {
 		type = "fixed",
@@ -81,6 +80,7 @@ minetest.register_node('christmas:snowman_head', {
 			{-0.3125, -0.5, -0.3125, 0.3125, 0.25, 0.3125},
 		}
 	},
+	groups = {cracky = 2, crumbly = 2, choppy = 2, oddly_breakable_by_hand = 2, melts = 2, icemaker = 1},
 })
 	
 minetest.register_node('christmas:snowman_middle', {
@@ -93,13 +93,54 @@ minetest.register_node('christmas:snowman_middle', {
 		'christmas_snowman_side.png',
 		'christmas_snowman_side.png',
 	},
-	groups = {oddly_breakable_by_hand = 1},
+	groups = {cracky = 2, crumbly = 2, choppy = 2, oddly_breakable_by_hand = 2, melts = 2, icemaker = 1},
 })
 
 minetest.register_node('christmas:snowman_bottom', {
 	description = 'Snowman Bottom',
 	tiles = {'christmas_snowman_side.png'},
-	groups = {oddly_breakable_by_hand = 1},
+	groups = {cracky = 2, crumbly = 2, choppy = 2, oddly_breakable_by_hand = 2, melts = 2, icemaker = 1},
+})
+--register craft recipes
+
+-- check for farming plus and use carrot instead of stick
+
+if minetest.get_modpath('farming_plus') then
+	minetest.register_craft({
+		output = 'christmas:snowman_head',
+		recipe = {
+			{'default:coal_lump', 'default:snow       ', 'default:coal_lump'},
+			{'default:snow     ', 'farming_plus:carrot_item', 'default:snow     '},
+			{'default:snow     ', 'default:snow       ', 'default:snow     '},
+		}
+	})
+else
+	minetest.register_craft({
+		output = 'christmas:snowman_head',
+		recipe = {
+			{'default:coal_lump', 'default:snow ', 'default:coal_lump'},
+			{'default:snow     ', 'default:stick', 'default:snow     '},
+			{'default:snow     ', 'default:snow ', 'default:snow     '},
+		}
+	})
+end
+
+minetest.register_craft({
+	output = 'christmas:snowman_middle',
+	recipe = {
+		{'default:snow', 'default:coal_lump', 'default:snow'},
+		{'default:snow', 'default:coal_lump', 'default:snow'},
+		{'default:snow', 'default:coal_lump', 'default:snow'},
+	}
+})
+
+minetest.register_craft({
+	output = 'christmas:snowman_bottom',
+	recipe = {
+		{'default:snow', 'default:snow', 'default:snow'},
+		{'default:snow', '            ', 'default:snow'},
+		{'default:snow', 'default:snow', 'default:snow'},
+	}
 })
 
 minetest.register_craft({

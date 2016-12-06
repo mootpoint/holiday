@@ -93,11 +93,13 @@ minetest.register_node('christmas:snowman_middle', {
 		'christmas_snowman_side.png',
 		'christmas_snowman_side.png',
 	},
+	groups = {oddly_breakable_by_hand = 1},
 })
 
 minetest.register_node('christmas:snowman_bottom', {
 	description = 'Snowman Bottom',
 	tiles = {'christmas_snowman_side.png'},
+	groups = {oddly_breakable_by_hand = 1},
 })
 
 minetest.register_craft({

@@ -80,7 +80,25 @@ minetest.register_node('christmas:snowman_head', {
 			{-0.3125, -0.5, -0.3125, 0.3125, 0.25, 0.3125},
 		}
 	},
-	groups = {cracky = 2, crumbly = 2, choppy = 2, oddly_breakable_by_hand = 2, melts = 2, icemaker = 1},
+	groups = {cracky = 2, crumbly = 2, choppy = 2, oddly_breakable_by_hand = 2, melts = 1, icemaker = 1},
+	
+	after_destruct = function(pos, oldnode)
+		--use group melts = 1 to 'melt' the snowman into a water source, then check for the water source after dug to make sure
+		--it wasn't just dug
+		if minetest.get_node(pos).name == 'default:water_source' then
+			--use 2 minetest.env:add_item calls because name = 'default:coal_lump 2' did not work.			
+			minetest.env:add_item(pos, {name = 'default:coal_lump'})
+			minetest.env:add_item(pos, {name = 'default:coal_lump'})
+			-- check if Farming_plus installed and give carrot back instead of stick
+			if minetest.get_modpath('farming_plus') then
+				minetest.env:add_item(pos, {name = 'farming_plus:carrot_item'})
+			else
+				minetest.env:add_item(pos, {name = 'default:stick'})
+			end
+			-- replace water_source with water_flowing after items are given. this replicates the snowman 'melting'
+			minetest.env:add_node(pos, {name = 'default:water_flowing'})
+		end
+	end,
 })
 	
 minetest.register_node('christmas:snowman_middle', {
@@ -93,13 +111,32 @@ minetest.register_node('christmas:snowman_middle', {
 		'christmas_snowman_side.png',
 		'christmas_snowman_side.png',
 	},
-	groups = {cracky = 2, crumbly = 2, choppy = 2, oddly_breakable_by_hand = 2, melts = 2, icemaker = 1},
+	groups = {cracky = 2, crumbly = 2, choppy = 2, oddly_breakable_by_hand = 2, melts = 1, icemaker = 1},
+	after_destruct = function(pos, oldnode)
+		--use group melts = 1 to 'melt' the snowman into a water source, then check for the water source after dug to make sure
+		--it wasn't just dug
+		if minetest.get_node(pos).name == 'default:water_source' then
+			--use 3 minetest.env:add_item calls because name = 'default:coal_lump 3' did not work.			
+			minetest.env:add_item(pos, {name = 'default:coal_lump'})
+			minetest.env:add_item(pos, {name = 'default:coal_lump'})
+			minetest.env:add_item(pos, {name = 'default:coal_lump'})
+			-- replace water_source with water_flowing after items are given. this replicates the snowman 'melting'
+			minetest.env:add_node(pos, {name = 'default:water_flowing'})
+		end
+	end,
 })
 
 minetest.register_node('christmas:snowman_bottom', {
 	description = 'Snowman Bottom',
 	tiles = {'christmas_snowman_side.png'},
-	groups = {cracky = 2, crumbly = 2, choppy = 2, oddly_breakable_by_hand = 2, melts = 2, icemaker = 1},
+	groups = {cracky = 2, crumbly = 2, choppy = 2, oddly_breakable_by_hand = 2, melts = 1, icemaker = 1},
+
+	-- snow will not replace with water_flowing on melt 2 like it should so we work around it until they fix it.
+	after_destruct = function(pos, oldnode)
+		if minetest.get_node(pos).name == 'default:water_source' then
+			minetest.env:add_node(pos, {name = 'default:water_flowing'})
+		end
+	end,
 })
 --register craft recipes
 

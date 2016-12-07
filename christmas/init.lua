@@ -87,16 +87,16 @@ minetest.register_node('christmas:snowman_head', {
 		--it wasn't just dug
 		if minetest.get_node(pos).name == 'default:water_source' then
 			--use 2 minetest.env:add_item calls because name = 'default:coal_lump 2' did not work.			
-			minetest.env:add_item(pos, {name = 'default:coal_lump'})
-			minetest.env:add_item(pos, {name = 'default:coal_lump'})
+			minetest.add_item(pos, {name = 'default:coal_lump'})
+			minetest.add_item(pos, {name = 'default:coal_lump'})
 			-- check if Farming_plus installed and give carrot back instead of stick
 			if minetest.get_modpath('farming_plus') then
-				minetest.env:add_item(pos, {name = 'farming_plus:carrot_item'})
+				minetest.add_item(pos, {name = 'farming_plus:carrot_item'})
 			else
-				minetest.env:add_item(pos, {name = 'default:stick'})
+				minetest.add_item(pos, {name = 'default:stick'})
 			end
 			-- replace water_source with water_flowing after items are given. this replicates the snowman 'melting'
-			minetest.env:add_node(pos, {name = 'default:water_flowing'})
+			minetest.add_node(pos, {name = 'default:water_flowing'})
 		end
 	end,
 })
@@ -117,11 +117,11 @@ minetest.register_node('christmas:snowman_middle', {
 		--it wasn't just dug
 		if minetest.get_node(pos).name == 'default:water_source' then
 			--use 3 minetest.env:add_item calls because name = 'default:coal_lump 3' did not work.			
-			minetest.env:add_item(pos, {name = 'default:coal_lump'})
-			minetest.env:add_item(pos, {name = 'default:coal_lump'})
-			minetest.env:add_item(pos, {name = 'default:coal_lump'})
+			minetest.add_item(pos, {name = 'default:coal_lump'})
+			minetest.add_item(pos, {name = 'default:coal_lump'})
+			minetest.add_item(pos, {name = 'default:coal_lump'})
 			-- replace water_source with water_flowing after items are given. this replicates the snowman 'melting'
-			minetest.env:add_node(pos, {name = 'default:water_flowing'})
+			minetest.add_node(pos, {name = 'default:water_flowing'})
 		end
 	end,
 })
@@ -134,7 +134,7 @@ minetest.register_node('christmas:snowman_bottom', {
 	-- snow will not replace with water_flowing on melt 2 like it should so we work around it until they fix it.
 	after_destruct = function(pos, oldnode)
 		if minetest.get_node(pos).name == 'default:water_source' then
-			minetest.env:add_node(pos, {name = 'default:water_flowing'})
+			minetest.add_node(pos, {name = 'default:water_flowing'})
 		end
 	end,
 })

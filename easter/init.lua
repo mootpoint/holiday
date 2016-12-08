@@ -245,6 +245,7 @@ minetest.register_craftitem('easter:egg_white', {
 		user:set_physics_override(1, 1, 1)
 		minetest.chat_send_player(user:get_player_name(), 'This egg tastes Normal... like vanilla')
 		itemstack:take_item()
+		minetest.do_item_eat(2,nil,itemstack,user)
 		return itemstack
 	end
 })
@@ -254,4 +255,14 @@ minetest.register_craftitem('easter:egg_zig_zag', {
 	inventory_image = 'easter_egg_zig_zag.png',
 	--decide what to do
 	-- on_use = 
+})
+
+minetest.override_item('default:dirt_with_grass', {
+	drop = {
+		max_items = 2,
+		items = {
+			{items = {'default:dirt'},     rarity = 1 },
+			{items = {'easter:egg_white'}, rarity = 30},
+		}
+	}
 })

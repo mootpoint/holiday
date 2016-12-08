@@ -97,13 +97,26 @@ minetest.register_craftitem('easter:egg_black', {
 	on_use = function(itemstack, user)
 		local healthchange = 20
 		local chance = math.random(1, 2)
+		itemstack:take_item()
 		if chance == 1 then
 			user:set_hp(user:get_hp() + healthchange)
-		else
-			user:set_hp(user:get_hp() - healthchange)
+			minetest.chat_send_player(user:get_player_name(), 'You have been healed.')
+
+			return itemstack
+		else			
+			
+			
+			local userhp = user:get_hp()
+			local almostdead = userhp - 1
+			if almostdead == 0 then
+				user:set_hp(userhp + 1)
+			else
+
+				user:set_hp(userhp - almostdead)
+			return itemstack
+			end
 		end
-		itemstack:take_item()
-		return itemstack
+		
 	end
 			
 })

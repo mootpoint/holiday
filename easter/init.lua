@@ -37,9 +37,9 @@ end
 	
 local function randomdecimal(use)
 	math.randomseed( os.time() )
-	dec = math.random()
-	whole = math.random(0, 10)
-	final = whole + dec
+	local dec = math.random()
+	local whole = math.random(0, 10)
+	local final = whole + dec
 	if use ~= 'speed' then
 		return round(final)
 	else 
@@ -95,13 +95,15 @@ minetest.register_craftitem('easter:egg_black', {
 	inventory_image = 'easter_egg_black.png',
 	-- black egg is dangerous and unpredictable
 	on_use = function(itemstack, user)
-		healthchange = 20
+		local healthchange = 20
 		local chance = math.random(1, 2)
 		if chance == 1 then
 			user:set_hp(user:get_hp() + healthchange)
 		else
 			user:set_hp(user:get_hp() - healthchange)
 		end
+		itemstack:take_item()
+		return itemstack
 	end
 			
 })
@@ -145,7 +147,7 @@ minetest.register_craftitem('easter:egg_speed', {
 	inventory_image = 'easter_egg_speed.png',
 	--speed
 	on_use = function(itemstack, user)
-		random = randomdecimal('speed')
+		local random = randomdecimal('speed')
 		user:set_physics_override({speed = random})
 		minetest.chat_send_player(user:get_player_name(), 'Your speed was set to : ' ..random..'.')
 		minetest.chat_send_player(user:get_player_name(), 'Alright, this one is like the flash, i guess. Unless your slow, then its like a snail.')
@@ -229,6 +231,8 @@ minetest.register_craftitem('easter:egg_white', {
 	on_use = function(itemstack, user)
 		user:set_physics_override(1, 1, 1)
 		minetest.chat_send_player(user:get_player_name(), 'This egg tastes Normal... like vanilla')
+		itemstack:take_item()
+		return itemstack
 	end
 })
 

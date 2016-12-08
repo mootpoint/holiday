@@ -28,11 +28,8 @@ along with easter.  If not, see <http://www.gnu.org/licenses/>.
 -- rounding function 
 
 local function round(number)
-
 	-- round to 2 decimal points 
-	-- idp is number of decimal points
-	idp = 2
-	return tonumber(string.format("%." .. (idp or 0) .. "f", number))
+	return tonumber(string.format("%.2f", number))
 
 end
 
@@ -97,7 +94,16 @@ minetest.register_craftitem('easter:egg_black', {
 	description = 'Easter Egg Black',
 	inventory_image = 'easter_egg_black.png',
 	-- black egg is dangerous and unpredictable
-	-- on_use = hurt player, teleport player, set physics extreme etc.
+	on_use = function(itemstack, user)
+		healthchange = 20
+		local chance = math.random(1, 2)
+		if chance == 1 then
+			user:set_hp(user:get_hp() + healthchange)
+		else
+			user:set_hp(user:get_hp() - healthchange)
+		end
+	end
+			
 })
 
 minetest.register_craftitem('easter:egg_checkered', {
@@ -111,7 +117,7 @@ minetest.register_craftitem('easter:egg_checkered', {
 		if inv:room_for_item('main', item..' '..amount) then
 			user:get_inventory():add_item('main', item..' '..amount)
 			itemstack:take_item()
-		 	minetest.chat_send_player(user:get_player_name(), 'This egg just gave you '..amount..' '..item..'. Or it at least tried to')
+		 	minetest.chat_send_player(user:get_player_name(), 'This egg just gave you '..amount..' '..item..'.')
 			return itemstack
 		else
 			minetest.chat_send_player(user:get_player_name(), 'You may want to make room in your inventory before trying that. I dont know what this thing does, but i think you need space.')

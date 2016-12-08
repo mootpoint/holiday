@@ -86,7 +86,12 @@ local common = {
 	'default:tree',
 	'default:desert_stone',
 	'default:desert_cobble',
-	'tool'
+	'default:ingot_steel',
+	'default:snow',
+	'default:snowblock',
+	'default:gravel',
+	'default:sand',
+	'tool',
 }
 
 local commontools ={
@@ -99,6 +104,41 @@ local commontools ={
 	'default:shovel_steel',
 	'default:axe_steel',
 	'default:pick_steel',
+}
+
+local uncommon = {
+	'default:diamond',
+	'default:obsidian',
+	'default:obsidian_glass',
+	'default:obsidian_block',
+	'default:steelblock',
+	'default:gold_lump',
+	'default:gold_ingot',
+	'default:mese_crystal_fragment',
+	'default:mese_crystal',
+	'default:flint',
+	'default:coalblock',
+	'tool',
+}
+
+local rare = {
+	'default:mese',
+	'default:diamondblock', 
+	'default:goldblock',
+	'tool'
+
+}
+
+local raretools = {
+	'default:shovel_mese',
+	'default:axe_mese',
+	'default:pick_mese',
+}
+
+local uncommontools = {
+	'default:shovel_diamond',
+	'default:axe_diamond',
+	'default:pick_diamond',
 }
 
 local commondistribution = {1, 1, 1, 2, 2, 3}
@@ -190,9 +230,30 @@ minetest.register_craftitem('easter:egg_checkered', {
 minetest.register_craftitem('easter:egg_diamond', {
 	description = 'Easter Egg Diamond',
 	inventory_image = 'easter_egg_diamond.png',
-	--decide what to do
-	-- on_use = probably gift uncommon to semi rare item
-	
+	--gift semi rare object
+	on_use = function(itemstack, user)
+		local item = uncommon[math.random(1, #uncommon)]
+		local amount = commondistribution[math.random(1, #commondistribution)]
+		local inv = user:get_inventory()
+		if item == 'tool' then
+			local toolnum1 = math.random(1, 3)
+			item = uncommontools[toolnum1]
+                       	if inv:room_for_item('main', item) then
+				user:get_inventory():add_item('main', item)
+				itemstack:take_item()
+	 			minetest.chat_send_player(user:get_player_name(), 'This egg just gave you '..item..'.')
+				return itemstack
+			end
+		elseif  inv:room_for_item('main', item..' '..amount) then
+			user:get_inventory():add_item('main', item..' '..amount)
+			itemstack:take_item()
+		 	minetest.chat_send_player(user:get_player_name(), 'This egg just gave you '..amount..' '..item..'.')
+			return itemstack
+				
+		else
+			minetest.chat_send_player(user:get_player_name(), 'You may want to make room in your inventory before trying that. I dont know what this thing does, but i think you need space.')
+		end
+	end
 })
 
 minetest.register_craftitem('easter:egg_food', {
@@ -232,8 +293,30 @@ minetest.register_craftitem('easter:egg_mario', {
 minetest.register_craftitem('easter:egg_mese', {
 	description = 'Easter Egg Mese',
 	inventory_image = 'easter_egg_mese.png',
-	--decide what to do
-	-- on_use = gift semi rare to rare item, or mese group tool
+	--gift rare item
+	on_use = function(itemstack, user)
+		local item = rare[math.random(1, #rare)]
+		local amount = commondistribution[math.random(1, #commondistribution)]
+		local inv = user:get_inventory()
+		if item == 'tool' then
+			local toolnum1 = math.random(1, 3)
+			item = raretools[toolnum1]
+                       	if inv:room_for_item('main', item) then
+				user:get_inventory():add_item('main', item)
+				itemstack:take_item()
+	 			minetest.chat_send_player(user:get_player_name(), 'This egg just gave you '..item..'.')
+				return itemstack
+			end
+		elseif  inv:room_for_item('main', item..' '..amount) then
+			user:get_inventory():add_item('main', item..' '..amount)
+			itemstack:take_item()
+		 	minetest.chat_send_player(user:get_player_name(), 'This egg just gave you '..amount..' '..item..'.')
+			return itemstack
+				
+		else
+			minetest.chat_send_player(user:get_player_name(), 'You may want to make room in your inventory before trying that. I dont know what this thing does, but i think you need space.')
+		end
+	end
 })
 
 -- space egg gives moon boots

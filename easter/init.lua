@@ -74,15 +74,6 @@ end
 
 local common = {
 	'default:apple',
-	'default:pick_wood',
-	'default:pick_stone',
-	'default:pick_steel',
-	'default:shovel_wood',
-	'default:shovel_stone',
-	'default:shovel_steel',
-	'default:axe_wood',
-	'default:axe_stone',
-	'default:axe_steel',
 	'default:papyrus',
 	'default:paper',
 	'default:glass',
@@ -95,6 +86,19 @@ local common = {
 	'default:tree',
 	'default:desert_stone',
 	'default:desert_cobble',
+	'tool'
+}
+
+local commontools ={
+	'default:shovel_wood',
+	'default:axe_wood',
+	'default:pick_wood',
+	'default:shovel_stone',
+	'default:axe_stone',
+	'default:pick_stone',
+	'default:shovel_steel',
+	'default:axe_steel',
+	'default:pick_steel',
 }
 
 local commondistribution = {1, 1, 1, 2, 2, 3}
@@ -141,11 +145,42 @@ minetest.register_craftitem('easter:egg_checkered', {
 		local item = common[math.random(1, #common)]
 		local amount = commondistribution[math.random(1, #commondistribution)]
 		local inv = user:get_inventory()
-		if inv:room_for_item('main', item..' '..amount) then
+		if item == 'tool' then
+			local toolnum3 = math.random(1, 3)
+			local toolnum2 = math.random(4, 6)
+			local toolnum1 = math.random(7, 9)
+			if amount == 1 then
+				item = commontools[toolnum1]
+                        	if inv:room_for_item('main', item) then
+					user:get_inventory():add_item('main', item)
+					itemstack:take_item()
+		 			minetest.chat_send_player(user:get_player_name(), 'This egg just gave you '..item..'.')
+					return itemstack
+				end
+			
+			elseif amount == 2 then
+				item = commontools[toolnum2]
+                        	if inv:room_for_item('main', item) then
+					user:get_inventory():add_item('main', item)
+					itemstack:take_item()
+		 			minetest.chat_send_player(user:get_player_name(), 'This egg just gave you '..item..'.')
+					return itemstack
+				end
+			else
+				item = commontools[toolnum3]
+                        	if inv:room_for_item('main', item) then
+					user:get_inventory():add_item('main', item)
+					itemstack:take_item()
+		 			minetest.chat_send_player(user:get_player_name(), 'This egg just gave you '..item..'.')
+					return itemstack
+				end
+			end
+		elseif  inv:room_for_item('main', item..' '..amount) then
 			user:get_inventory():add_item('main', item..' '..amount)
 			itemstack:take_item()
 		 	minetest.chat_send_player(user:get_player_name(), 'This egg just gave you '..amount..' '..item..'.')
 			return itemstack
+				
 		else
 			minetest.chat_send_player(user:get_player_name(), 'You may want to make room in your inventory before trying that. I dont know what this thing does, but i think you need space.')
 		end

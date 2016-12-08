@@ -22,7 +22,27 @@ along with easter.  If not, see <http://www.gnu.org/licenses/>.
 
 -- first enable a few different eggs, next make some physics eggs some present eggs, last hook each egg to a different item.
 
-
+-- Teleport player to random location.
+local function randteleport(user)
+	-- p.x, p.y, and p.z will be the position at coordinates
+	local p = {}
+	math.randomseed( os.time() )
+	p.x = math.random(-4000, 4000)
+	p.y = math.random(-1000, 1000)
+	p.z = math.random(-4000, 4000)
+	if p.x and p.y and p.z then
+			local lm = tonumber(minetest.setting_get("map_generation_limit") or 31000)
+			if p.x < -lm or p.x > lm or p.y < -lm or p.y > lm or p.z < -lm or p.z > lm then
+				return false, "Cannot teleport out of map bounds!"
+			end
+			teleportee = core.get_player_by_name(user)
+			if teleportee then
+				teleportee:setpos(p)
+				return true, "Teleporting to "..core.pos_to_string(p)
+			end
+	end
+end
+		
 -- functions to control random numbers and random decimals
 
 -- rounding function 
@@ -47,14 +67,6 @@ local function randomdecimal(use)
 		final = wholespeed + dec
 		return round(final)
 	end
-end
-
--- generate random whole number
-
-local function randomnum(amount)
-	-- amount should be the number of items in the list or the max number needed
-	math.randomseed( os.time() )
-	return math.random(0, amount)
 end
 
 
@@ -244,7 +256,6 @@ minetest.register_craftitem('easter:egg_white', {
 	on_use = function(itemstack, user)
 		user:set_physics_override(1, 1, 1)
 		minetest.chat_send_player(user:get_player_name(), 'This egg tastes Normal... like vanilla')
-		itemstack:take_item()
 		minetest.do_item_eat(2,nil,itemstack,user)
 		return itemstack
 	end
@@ -253,8 +264,15 @@ minetest.register_craftitem('easter:egg_white', {
 minetest.register_craftitem('easter:egg_zig_zag', {
 	description = 'Easter Egg Zig Zag',
 	inventory_image = 'easter_egg_zig_zag.png',
-	--decide what to do
-	-- on_use = 
+	-- Teleport to random location.
+	on_use =  function(itemstack, user)
+		local p_name = user:get_player_name()
+		randteleport(p_name)
+		minetest.chat_send_player(p_name, 'My head is spinning... Where are we?')
+		itemstack:take_item()
+		return itemstack
+	end
+		
 })
 
 minetest.override_item('default:dirt_with_grass', {

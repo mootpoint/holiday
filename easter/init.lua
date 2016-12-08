@@ -23,10 +23,16 @@ along with easter.  If not, see <http://www.gnu.org/licenses/>.
 -- first enable a few different eggs, next make some physics eggs some present eggs, last hook each egg to a different item.
 
 -- Teleport player to random location.
+
+-- intiallize random
+
+math.randomseed( tonumber(tostring(os.time()):reverse():sub(1,6)) )
+math.random(); math.random(10); math.random(2)
+
+
 local function randteleport(user)
 	-- p.x, p.y, and p.z will be the position at coordinates
 	local p = {}
-	math.randomseed( os.time() )
 	p.x = math.random(-4000, 4000)
 	p.y = math.random(-1000, 1000)
 	p.z = math.random(-4000, 4000)
@@ -56,7 +62,7 @@ end
 -- generate random decimal number
 	
 local function randomdecimal(use)
-	math.randomseed( os.time() )
+
 	local dec = math.random()
 	local whole = math.random(0, 10)
 	local final = whole + dec
@@ -139,6 +145,21 @@ local uncommontools = {
 	'default:shovel_diamond',
 	'default:axe_diamond',
 	'default:pick_diamond',
+}
+
+local egglist = {
+	'easter:egg_checkered',
+	'easter:egg_white',
+	'easter:egg_food',
+	'easter:egg_space',
+	'easter:egg_mario',
+	'easter:egg_speed',
+	'easter:egg_striped',
+	'easter:egg_zig_zag',
+	'easter:egg_diamond',
+	'easter:egg_black',
+	'easter:egg_time',
+	'easter:egg_mese',
 }
 
 local commondistribution = {1, 1, 1, 2, 2, 3}
@@ -392,13 +413,27 @@ minetest.register_craftitem('easter:egg_zig_zag', {
 	end
 		
 })
-
+--i believe while this is more accurate for digging easter eggs, it will invite unwanted strip mining.
+--[[
 minetest.override_item('default:dirt_with_grass', {
 	drop = {
 		max_items = 2,
 		items = {
 			{items = {'default:dirt'},     rarity = 1 },
 			{items = {'easter:egg_white'}, rarity = 30},
+		}
+	}
+})
+]]--
+
+
+
+minetest.override_item('default:stone', {
+	drop = {
+		max_items = 2,
+		items = {
+			{items = {'default:cobble'},		 rarity = 1},
+			{items = {egglist[math.random(1, #egglist)]},  rarity = 3},
 		}
 	}
 })

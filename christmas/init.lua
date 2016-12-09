@@ -57,14 +57,79 @@ minetest.register_node('christmas:present_green', {
 		'christmas_present_green_side.png',
 		'christmas_present_green_side.png'
 	},
-	groups = {cracky = 2, crumbly = 2, choppy = 2, oddly_breakable_by_hand = 2, melts = 2, icemaker = 1},
+	groups = {oddly_breakable_by_hand = 3,},
 	
 })
 
+minetest.register_node('christmas:present_small_red', {
+	description = 'Small Red Present',
+	drawtype = 'nodebox',
+	paramtype = 'light',
+	tiles = {
+		'christmas_present_small_red_top.png',
+		'christmas_present_small_red_bottom.png',
+		'christmas_present_small_red_side.png',
+		'christmas_present_small_red_side.png',	
+		'christmas_present_small_red_side.png',
+		'christmas_present_small_red_side.png',
+	},
+	node_box = {
+		type = 'fixed',
+		fixed = {
+			{-0.3125, -0.5, -0.3125, 0.3125, 0.125, 0.3125},
+		}
+	},
+	groups = {oddly_breakable_by_hand = 3,},
+	
+})
+
+minetest.register_node('christmas:present_small_blue', {
+	description = 'Small Blue Present',
+	drawtype = 'nodebox',
+	paramtype = 'light',
+	tiles = {
+		'christmas_present_small_blue_top.png',
+		'christmas_present_small_blue_bottom.png',
+		'christmas_present_small_blue_side.png',
+		'christmas_present_small_blue_side.png',	
+		'christmas_present_small_blue_side.png',
+		'christmas_present_small_blue_side.png',
+	},
+	node_box = {
+		type = 'fixed',
+		fixed = {
+			{-0.3125, -0.5, -0.3125, 0.3125, 0.125, 0.3125},
+		}
+	},
+	groups = {oddly_breakable_by_hand = 3,},
+	
+})
+
+minetest.register_node('christmas:present_small_purple', {
+	description = 'Small Purple Present',
+	drawtype = 'nodebox',
+	paramtype = 'light',
+	tiles = {
+		'christmas_present_small_purple_top.png',
+		'christmas_present_small_purple_bottom.png',
+		'christmas_present_small_purple_side.png',
+		'christmas_present_small_purple_side.png',	
+		'christmas_present_small_purple_side.png',
+		'christmas_present_small_purple_side.png',
+	},
+	node_box = {
+		type = 'fixed',
+		fixed = {
+			{-0.3125, -0.5, -0.3125, 0.3125, 0.125, 0.3125},
+		}
+	},
+	groups = {oddly_breakable_by_hand = 3,},
+	
+})
 minetest.register_node('christmas:snowman_head', {
 	description = 'Snowman Head',
 	drawtype = 'nodebox',
-	paramtype = "light",
+	paramtype = 'light',
 	tiles = {
 		'christmas_snowman_head_top.png',
 		'christmas_snowman_head_top.png',

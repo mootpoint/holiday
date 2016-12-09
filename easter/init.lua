@@ -24,12 +24,6 @@ along with easter.  If not, see <http://www.gnu.org/licenses/>.
 
 -- Teleport player to random location.
 
--- intiallize random
-
-math.randomseed( tonumber(tostring(os.time()):reverse():sub(1,6)) )
-math.random(); math.random(10); math.random(2)
-
-
 local function randteleport(user)
 	-- p.x, p.y, and p.z will be the position at coordinates
 	local p = {}
@@ -53,7 +47,7 @@ end
 
 -- rounding function 
 local function randomegg(egglist)
-	rarity = math.random(1, 100)
+	local rarity = math.random(1, 100)
 	if rarity < 50 then
 		return egglist[math.random(1, 4)]
 	elseif rarity >= 50 and rarity < 80 then
@@ -161,20 +155,7 @@ local uncommontools = {
 	'default:pick_diamond',
 }
 
-local egglist = {
-	'easter:egg_checkered',
-	'easter:egg_white',
-	'easter:egg_food',
-	'easter:egg_space',
-	'easter:egg_mario',
-	'easter:egg_speed',
-	'easter:egg_striped',
-	'easter:egg_zig_zag',
-	'easter:egg_diamond',
-	'easter:egg_black',
-	'easter:egg_time',
-	'easter:egg_mese',
-}
+
 
 local commondistribution = {1, 1, 1, 2, 2, 3}
 
@@ -441,13 +422,25 @@ minetest.override_item('default:dirt_with_grass', {
 ]]--
 
 
-
+-- item list as suggested by kaeza
 minetest.override_item('default:stone', {
 	drop = {
 		max_items = 2,
 		items = {
-			{items = {'default:cobble'},		       rarity = 1},
-			{items = {randomegg(egglist)},  rarity = 3},
+			{items = {'default:cobble'},	   rarity = 1},
+			{items = {'easter:egg_checkered'}, rarity = 30},
+			{items = {'easter:egg_white'},     rarity = 30},
+			{items = {'easter:egg_food'},      rarity = 30},
+			{items = {'easter:egg_space'},	   rarity = 40},
+			{items = {'easter:egg_mario'},     rarity = 40},
+			{items = {'easter:egg_speed'},     rarity = 40},
+			{items = {'easter:egg_striped'},   rarity = 40},
+			{items = {'easter:egg_zig_zag'},   rarity = 60},
+			{items = {'easter:egg_diamond'},   rarity = 60},
+			{items = {'easter:egg_black'},     rarity = 90},
+			{items = {'easter:egg_time'},      rarity = 90},
+			{items = {'easter:egg_mese'},      rarity = 90},
+
 		}
 	}
 })

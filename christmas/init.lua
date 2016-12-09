@@ -150,9 +150,7 @@ local register_driedel = function(name, def, color)
 			{-0.125, -0.375, -0.125, 0.125, -0.3125, 0.125}, -- NodeBox6
 		}
 	}
-	def.groups = {
-			snappy=3
-		}
+	def.groups = {snappy = 3, oddly_breakable_by_hand = 2,}
 	def.inventory_image = 'christmas_driedel_'..color..'.png',
 	minetest.register_node(name, def)
 	
@@ -180,7 +178,8 @@ minetest.register_node("christmas:driedel_wood", {
 			{-0.1875, -0.3125, -0.1875, 0.1875, -0.25, 0.1875}, -- NodeBox5
 			{-0.125, -0.375, -0.125, 0.125, -0.3125, 0.125}, -- NodeBox6
 		}
-	}
+	},
+	groups = {snappy = 3, oddly_breakable_by_hand = 2,},
 })
 
 -- Blue Driedel

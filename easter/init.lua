@@ -22,6 +22,7 @@ along with easter.  If not, see <http://www.gnu.org/licenses/>.
 
 -- first enable a few different eggs, next make some physics eggs some present eggs, last hook each egg to a different item.
 
+
 -- Teleport player to random location.
 
 local function randteleport(user)
@@ -106,7 +107,45 @@ local common = {
 	'default:gravel',
 	'default:sand',
 	'tool',
+
 }
+
+local commontools ={
+	'default:shovel_wood',
+	'default:axe_wood',
+	'default:pick_wood',
+	'default:shovel_stone',
+	'default:axe_stone',
+	'default:pick_stone',
+	'default:shovel_steel',
+	'default:axe_steel',
+	'default:pick_steel',
+}
+
+local uncommon = {
+	'default:diamond',
+	'default:obsidian',
+	'default:obsidian_glass',
+	'default:obsidian_block',
+	'default:steelblock',
+	'default:gold_lump',
+	'default:gold_ingot',
+	'default:mese_crystal_fragment',
+	'default:mese_crystal',
+	'default:flint',
+	'default:coalblock',
+	'tool',
+}
+
+local rare = {
+	'default:mese',
+	'default:diamondblock', 
+	'default:goldblock',
+	'tool'
+
+}
+
+
 
 local commontools ={
 	'default:shovel_wood',
@@ -165,28 +204,22 @@ local commondistribution = {1, 1, 1, 2, 2, 3}
 minetest.register_craftitem('easter:egg_black', {
 	description = 'Easter Egg Black',
 	inventory_image = 'easter_egg_black.png',
+	groups = {not_in_creative_inventory = 1,},
 	-- black egg is dangerous and unpredictable
 	on_use = function(itemstack, user)
-		local healthchange = 20
 		local chance = math.random(1, 2)
 		itemstack:take_item()
 		if chance == 1 then
-			user:set_hp(user:get_hp() + healthchange)
+			user:set_hp(user:get_hp() + 20)
 			minetest.chat_send_player(user:get_player_name(), 'You have been healed.')
 
 			return itemstack
 		else			
-			
-			
-			local userhp = user:get_hp()
-			local almostdead = userhp - 1
-			if almostdead == 0 then
-				user:set_hp(userhp + 1)
-			else
-
-				user:set_hp(userhp - almostdead)
+			minetest.after(0.1, function()
+				user:set_hp(user:get_hp() - 20)
+			end)
 			return itemstack
-			end
+			
 		end
 		
 	end
@@ -197,6 +230,7 @@ minetest.register_craftitem('easter:egg_checkered', {
 	description = 'Easter Egg Checkered',
 	inventory_image = 'easter_egg_checkered.png',
 	-- gift random common item
+	groups = {not_in_creative_inventory = 1,},
 	on_use = function(itemstack, user)
 		local item = common[math.random(1, #common)]
 		local amount = commondistribution[math.random(1, #commondistribution)]
@@ -246,6 +280,8 @@ minetest.register_craftitem('easter:egg_checkered', {
 minetest.register_craftitem('easter:egg_diamond', {
 	description = 'Easter Egg Diamond',
 	inventory_image = 'easter_egg_diamond.png',
+
+	groups = {not_in_creative_inventory = 1,},
 	--gift semi rare object
 	on_use = function(itemstack, user)
 		local item = uncommon[math.random(1, #uncommon)]
@@ -275,6 +311,7 @@ minetest.register_craftitem('easter:egg_diamond', {
 minetest.register_craftitem('easter:egg_food', {
 	description = 'Easter Egg Food',
 	inventory_image = 'easter_egg_food.png',
+	groups = {not_in_creative_inventory = 1,},
 	-- just eat it
 	on_use = minetest.item_eat(4),
 })
@@ -282,6 +319,7 @@ minetest.register_craftitem('easter:egg_food', {
 minetest.register_craftitem('easter:egg_speed', {
 	description = 'Easter Egg Speed',
 	inventory_image = 'easter_egg_speed.png',
+	groups = {not_in_creative_inventory = 1,},
 	--speed
 	on_use = function(itemstack, user)
 		local random = randomdecimal('speed')
@@ -296,10 +334,11 @@ minetest.register_craftitem('easter:egg_speed', {
 minetest.register_craftitem('easter:egg_mario', {
 	description = 'Easter Egg Mario',
 	inventory_image = 'easter_egg_mario.png',
+	groups = {not_in_creative_inventory = 1,},
 	--Mario
 	on_use = function(itemstack, user)
 			user:set_physics_override({jump = 1.7})
-			minetest.chat_send_player(user:get_player_name(),'So the Mario Egg makes you jump like Mario!. cool')	
+			minetest.chat_send_player(user:get_player_name(),'So this Egg makes you jump like Mario!. cool')	
 			itemstack:take_item()
 			return itemstack
 		
@@ -309,6 +348,7 @@ minetest.register_craftitem('easter:egg_mario', {
 minetest.register_craftitem('easter:egg_mese', {
 	description = 'Easter Egg Mese',
 	inventory_image = 'easter_egg_mese.png',
+	groups = {not_in_creative_inventory = 1,},
 	--gift rare item
 	on_use = function(itemstack, user)
 		local item = rare[math.random(1, #rare)]
@@ -339,6 +379,7 @@ minetest.register_craftitem('easter:egg_mese', {
 minetest.register_craftitem('easter:egg_space', {
 	description = 'Easter Egg Space',
 	inventory_image = 'easter_egg_space.png',
+	groups = {not_in_creative_inventory = 1,},
 	--moon boots
 	on_use = function(itemstack, user)
 			
@@ -356,6 +397,7 @@ minetest.register_craftitem('easter:egg_space', {
 minetest.register_craftitem('easter:egg_striped', {
 	description = 'Easter Egg Striped',
 	inventory_image = 'easter_egg_striped.png',
+	groups = {not_in_creative_inventory = 1,},
 	-- Random Gravity
 	on_use = function(itemstack, user)
 		random = randomdecimal('gravity')
@@ -374,6 +416,7 @@ minetest.register_craftitem('easter:egg_striped', {
 minetest.register_craftitem('easter:egg_time', {
 	description = 'Easter Egg time',
 	inventory_image = 'easter_egg_time.png',
+	groups = {not_in_creative_inventory = 1,},
 	-- set day
 	on_use = function(itemstack, user)
 		minetest.set_timeofday(0.23)
@@ -386,6 +429,7 @@ minetest.register_craftitem('easter:egg_time', {
 minetest.register_craftitem('easter:egg_white', {
 	description = 'Easter Egg White',
 	inventory_image = 'easter_egg_white.png',
+	groups = {not_in_creative_inventory = 1,},
 	-- set physics to normal
 	on_use = function(itemstack, user)
 		user:set_physics_override(1, 1, 1)
@@ -398,6 +442,7 @@ minetest.register_craftitem('easter:egg_white', {
 minetest.register_craftitem('easter:egg_zig_zag', {
 	description = 'Easter Egg Zig Zag',
 	inventory_image = 'easter_egg_zig_zag.png',
+	groups = {not_in_creative_inventory = 1,},
 	-- Teleport to random location.
 	on_use =  function(itemstack, user)
 		local p_name = user:get_player_name()

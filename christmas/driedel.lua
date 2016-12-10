@@ -59,6 +59,7 @@ minetest.register_node('christmas:driedel_wood', {
 	},
 	drawtype = 'nodebox',
 	paramtype = 'light',
+	description = 'Wooden Driedel',
 	node_box = {
 
 		type = 'fixed',
@@ -122,11 +123,9 @@ minetest.register_craft({
 minetest.register_craft({
 	output = 'christmas:driedel_wood',
 	recipe = {
-		{'', 'default:stick', '',},
-		{'', 'default:wood' , '',},
-		{'', ''             , '',}
+		{'default:stick',},
+		{'group:wood'   ,},
 	},
-
 })
 
 minetest.register_craft({

@@ -134,21 +134,32 @@ if minetest.get_modpath('farming_plus') then
 	minetest.register_craft({
 		output = 'christmas:snowman_head',
 		recipe = {
-			{'default:coal_lump', 'default:snow            ', 'default:coal_lump'},
-			{'default:snow     ', 'farming_plus:carrot_item', 'default:snow     '},
-			{'default:snow     ', 'default:snow            ', 'default:snow     '},
+			{'default:coal_lump', 'default:snow'            , 'default:coal_lump'},
+			{'default:snow'     , 'farming_plus:carrot_item', 'default:snow'     },
+			{'default:snow'     , 'default:snow'            , 'default:snow'     },
 		}
 	})
 else
 	minetest.register_craft({
 		output = 'christmas:snowman_head',
 		recipe = {
-			{'default:coal_lump', 'default:snow ', 'default:coal_lump'},
-			{'default:snow     ', 'default:stick', 'default:snow     '},
-			{'default:snow     ', 'default:snow ', 'default:snow     '},
+			{'default:coal_lump', 'default:snow' , 'default:coal_lump'},
+			{'default:snow'     , 'default:stick', 'default:snow'     },
+			{'default:snow'     , 'default:snow' , 'default:snow'     },
 		}
 	})
 end
+
+
+minetest.register_craft({
+	output = 'christmas:snowman_bottom',
+	recipe = {
+		{'default:snow', 'default:snow', 'default:snow'},
+		{'default:snow', ''            , 'default:snow'},
+		{'default:snow', 'default:snow', 'default:snow'},
+	}
+})
+
 
 minetest.register_craft({
 	output = 'christmas:snowman_middle',
@@ -156,15 +167,6 @@ minetest.register_craft({
 		{'default:snow', 'default:coal_lump', 'default:snow'},
 		{'default:snow', 'default:coal_lump', 'default:snow'},
 		{'default:snow', 'default:coal_lump', 'default:snow'},
-	}
-})
-
-minetest.register_craft({
-	output = 'christmas:snowman_bottom',
-	recipe = {
-		{'default:snow', 'default:snow', 'default:snow'},
-		{'default:snow', '            ', 'default:snow'},
-		{'default:snow', 'default:snow', 'default:snow'},
 	}
 })
 

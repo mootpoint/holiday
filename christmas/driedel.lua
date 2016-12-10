@@ -41,7 +41,7 @@ local register_driedel = function(name, def, color)
 			{-0.125, -0.375, -0.125, 0.125, -0.3125, 0.125}, -- NodeBox6
 		}
 	}
-	def.groups = {snappy = 3, oddly_breakable_by_hand = 2,},
+	def.groups = {snappy = 3, oddly_breakable_by_hand = 2,}
 	def.inventory_image = 'christmas_driedel_'..color..'.png',
 	minetest.register_node(name, def)
 	

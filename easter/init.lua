@@ -22,6 +22,45 @@ along with easter.  If not, see <http://www.gnu.org/licenses/>.
 
 -- first enable a few different eggs, next make some physics eggs some present eggs, last hook each egg to a different item.
 
+-- egg drop function
+
+local function randomegg(egglist)
+	local droprarity = math.random(1, 300)
+	local rarity = math.random(1, 100)
+	if droprarity == 1 then
+		if rarity < 50 then
+			return egglist[math.random(1, 4)]
+		elseif rarity >= 50 and rarity < 80 then
+			return egglist[math.random(5, 6)]
+		elseif rarity >= 80 and rarity < 90 then
+			return egglist[math.random(7, 9)]
+		elseif rarity >= 90 and rarity <= 100 then
+			return egglist[math.random(10, 12)]
+		else 
+			return egglist[math.random(1, 4)]
+		end
+	else
+		return nil
+	end
+end
+
+-- list of eggs
+
+local egglist = {
+	'easter:egg_checkered',
+	'easter:egg_white',
+	'easter:egg_food',
+	'easter:egg_space',
+	'easter:egg_mario',
+	'easter:egg_speed',
+	'easter:egg_striped',
+	'easter:egg_zig_zag',
+	'easter:egg_diamond',
+	'easter:egg_black',
+	'easter:egg_time',
+	'easter:egg_mese',
+}
+
 
 -- Teleport player to random location.
 
@@ -471,24 +510,43 @@ minetest.override_item('default:dirt_with_grass', {
 
 
 -- item list as suggested by kaeza
+-- not working as expected items too frequent to remove soon
+--[[
 minetest.override_item('default:stone', {
 	drop = {
 		max_items = 2,
 		items = {
 			{items = {'default:cobble'},	   rarity = 1},
-			{items = {'easter:egg_checkered'}, rarity = 30},
-			{items = {'easter:egg_white'},     rarity = 30},
-			{items = {'easter:egg_food'},      rarity = 30},
-			{items = {'easter:egg_space'},	   rarity = 40},
-			{items = {'easter:egg_mario'},     rarity = 40},
-			{items = {'easter:egg_speed'},     rarity = 40},
-			{items = {'easter:egg_striped'},   rarity = 40},
-			{items = {'easter:egg_zig_zag'},   rarity = 60},
-			{items = {'easter:egg_diamond'},   rarity = 60},
-			{items = {'easter:egg_black'},     rarity = 90},
-			{items = {'easter:egg_time'},      rarity = 90},
-			{items = {'easter:egg_mese'},      rarity = 90},
+			{items = {'easter:egg_checkered'}, rarity = 50},
+			{items = {'easter:egg_white'},     rarity = 50},
+			{items = {'easter:egg_food'},      rarity = 50},
+			{items = {'easter:egg_space'},	   rarity = 80},
+			{items = {'easter:egg_mario'},     rarity = 80},
+			{items = {'easter:egg_speed'},     rarity = 80},
+			{items = {'easter:egg_striped'},   rarity = 80},
+			{items = {'easter:egg_zig_zag'},   rarity = 150},
+			{items = {'easter:egg_diamond'},   rarity = 150},
+			{items = {'easter:egg_black'},     rarity = 500},
+			{items = {'easter:egg_time'},      rarity = 500},
+			{items = {'easter:egg_mese'},      rarity = 500},
 
 		}
 	}
 })
+]]--
+
+minetest.override_item('default:stone', {
+	after_dig_node = function(pos, oldnode, oldmetadata, digger)
+		local egg = randomegg(egglist)
+		if egg ~= nil then
+			local inv = digger:get_inventory()
+			if inv:room_for_item('main', egg) then
+				digger:get_inventory():add_item('main', egg)
+			end
+		end
+	end
+})
+			
+			
+		
+		

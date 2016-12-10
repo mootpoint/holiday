@@ -80,8 +80,9 @@ local function randomdecimal(use)
 	else 
 		wholespeed = math.random(1, 3)
 		final = wholespeed + dec
-		if final == 0
-		final = randomdecimal('gravity')
+		if final == 0 then 
+			final = randomdecimal('gravity')
+		end
 		return round(final)
 	end
 end

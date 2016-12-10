@@ -80,6 +80,8 @@ local function randomdecimal(use)
 	else 
 		wholespeed = math.random(1, 3)
 		final = wholespeed + dec
+		if final == 0
+		final = randomdecimal('gravity')
 		return round(final)
 	end
 end
@@ -400,7 +402,7 @@ minetest.register_craftitem('easter:egg_striped', {
 	groups = {not_in_creative_inventory = 1,},
 	-- Random Gravity
 	on_use = function(itemstack, user)
-		random = randomdecimal('gravity')
+		local random = randomdecimal('gravity')
 		user:set_physics_override({gravity = random})
 		minetest.chat_send_player(user:get_player_name(), 'This egg just set your Gravity to : '..random)
 		itemstack:take_item()

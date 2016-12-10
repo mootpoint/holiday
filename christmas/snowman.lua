@@ -134,9 +134,9 @@ if minetest.get_modpath('farming_plus') then
 	minetest.register_craft({
 		output = 'christmas:snowman_head',
 		recipe = {
-			{'default:coal_lump', 'default:snow       ', 'default:coal_lump'},
+			{'default:coal_lump', 'default:snow            ', 'default:coal_lump'},
 			{'default:snow     ', 'farming_plus:carrot_item', 'default:snow     '},
-			{'default:snow     ', 'default:snow       ', 'default:snow     '},
+			{'default:snow     ', 'default:snow            ', 'default:snow     '},
 		}
 	})
 else

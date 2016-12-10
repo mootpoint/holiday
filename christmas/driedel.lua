@@ -29,10 +29,9 @@ local register_driedel = function(name, def, color)
 		'christmas_driedel_'..color..'_side_d.png',
 	}
 	def.drawtype = 'nodebox'
-	def.is_ground_content = true
 	def.paramtype = 'light'
 	def.node_box = {
-		type = "fixed",
+		type = 'fixed',
 		fixed = {
 			{-0.0625, -0.5, -0.0625, 0.0625, 0.5, 0.0625}, -- NodeBox1
 			{-0.375, 0.0625, -0.375, 0.375, 0.1875, 0.375}, -- NodeBox2
@@ -42,26 +41,27 @@ local register_driedel = function(name, def, color)
 			{-0.125, -0.375, -0.125, 0.125, -0.3125, 0.125}, -- NodeBox6
 		}
 	}
-	def.groups = {snappy = 3, oddly_breakable_by_hand = 2,}
+	def.groups = {snappy = 3, oddly_breakable_by_hand = 2,},
 	def.inventory_image = 'christmas_driedel_'..color..'.png',
 	minetest.register_node(name, def)
 	
 end
 
 
-minetest.register_node("christmas:driedel_wood", {
+minetest.register_node('christmas:driedel_wood', {
 	tiles = {
-		"default_wood.png",
-		"default_wood.png",
-		"default_wood.png",
-		"default_wood.png",
-		"default_wood.png",
-		"default_wood.png"
+		'default_wood.png',
+		'default_wood.png',
+		'default_wood.png',
+		'default_wood.png',
+		'default_wood.png',
+		'default_wood.png'
 	},
-	drawtype = "nodebox",
-	paramtype = "light",
+	drawtype = 'nodebox',
+	paramtype = 'light',
 	node_box = {
-		type = "fixed",
+
+		type = 'fixed',
 		fixed = {
 			{-0.0625, -0.5, -0.0625, 0.0625, 0.5, 0.0625}, -- NodeBox1
 			{-0.375, 0.0625, -0.375, 0.375, 0.1875, 0.375}, -- NodeBox2
@@ -121,8 +121,11 @@ minetest.register_craft({
 
 minetest.register_craft({
 	output = 'christmas:driedel_wood',
-	type = 'shapeless',
-	recipe = {'christmas:snowman_head', 'default:cobble',}
+	recipe = {
+		{'', 'default:stick', '',},
+		{'', 'default:wood' , '',},
+		{'', ''             , '',}
+	},
 
 })
 

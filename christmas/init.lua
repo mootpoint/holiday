@@ -267,18 +267,19 @@ minetest.register_node('christmas:snowman_head', {
 	drawtype = 'nodebox',
 	paramtype = 'light',
 	tiles = {
-		'christmas_snowman_head_top.png',
-		'christmas_snowman_head_top.png',
-		'christmas_snowman_head_front.png',
-		'christmas_snowman_head_side.png',
-		'christmas_snowman_head_side.png',
-		'christmas_snowman_head_side.png',
+		"christmas_snowman_head_top.png",
+		"christmas_snowman_head_top.png",
+		"christmas_snowman_head_side.png",
+		"christmas_snowman_head_side.png",
+		"christmas_snowman_head_front.png",
+		"christmas_snowman_head_side.png"
 	},
 
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-0.3125, -0.5, -0.3125, 0.3125, 0.25, 0.3125},
+			{-0.3125, -0.5, -0.375, 0.3125, 0.25, 0.375}, -- NodeBox1
+			{-0.375, -0.4375, -0.4375, 0.375, 0.1875, 0.4375}, -- NodeBox2
 		}
 	},
 	groups = {cracky = 2, crumbly = 2, choppy = 2, oddly_breakable_by_hand = 2, melts = 1, icemaker = 1},
@@ -305,12 +306,22 @@ minetest.register_node('christmas:snowman_head', {
 minetest.register_node('christmas:snowman_middle', {
 	description = 'Snowman Middle',
 	tiles = {
-		'christmas_snowman_side.png',
-		'christmas_snowman_side.png',
-		'christmas_snowman_middle_buttons.png',
-		'christmas_snowman_side.png',
-		'christmas_snowman_side.png',
-		'christmas_snowman_side.png',
+		"christmas_snowman_tb.png",
+		"christmas_snowman_tb.png",
+		"christmas_snowman_side.png",
+		"christmas_snowman_side.png",
+		"christmas_snowman_side.png",
+		"christmas_snowman_middle_buttons.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.375, -0.5, -0.375, 0.375, 0.5, 0.375}, -- NodeBox1
+			{-0.4375, -0.4375, -0.4375, 0.4375, 0.4375, 0.4375}, -- NodeBox2
+			{-0.5, -0.375, -0.5, 0.5, 0.375, 0.5}, -- NodeBox3
+		}
 	},
 	groups = {cracky = 2, crumbly = 2, choppy = 2, oddly_breakable_by_hand = 2, melts = 1, icemaker = 1},
 	after_destruct = function(pos, oldnode)
@@ -329,7 +340,24 @@ minetest.register_node('christmas:snowman_middle', {
 
 minetest.register_node('christmas:snowman_bottom', {
 	description = 'Snowman Bottom',
-	tiles = {'christmas_snowman_side.png'},
+	tiles = {
+		"christmas_snowman_tb.png",
+		"christmas_snowman_tb.png",
+		"christmas_snowman_side.png",
+		"christmas_snowman_side.png",
+		"christmas_snowman_side.png",
+		"christmas_snowman_side.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.375, -0.5, -0.375, 0.375, 0.5, 0.375}, -- NodeBox1
+			{-0.4375, -0.4375, -0.4375, 0.4375, 0.4375, 0.4375}, -- NodeBox2
+			{-0.5, -0.375, -0.5, 0.5, 0.375, 0.5}, -- NodeBox3
+		}
+	},
 	groups = {cracky = 2, crumbly = 2, choppy = 2, oddly_breakable_by_hand = 2, melts = 1, icemaker = 1},
 
 	-- snow will not replace with water_flowing on melt 2 like it should so we work around it until they fix it.

@@ -25,7 +25,7 @@ along with easter.  If not, see <http://www.gnu.org/licenses/>.
 -- egg drop function
 
 local function randomegg(egglist)
-	local droprarity = math.random(1, 300)
+	local droprarity = math.random(1, 30)
 	local rarity = math.random(1, 100)
 	if droprarity == 1 then
 		if rarity < 50 then
@@ -86,21 +86,7 @@ end
 -- functions to control random numbers and random decimals
 
 -- rounding function 
-local function randomegg(egglist)
-	local rarity = math.random(1, 100)
-	if rarity < 50 then
-		return egglist[math.random(1, 4)]
-	elseif rarity >= 50 and rarity < 80 then
-		return egglist[math.random(5, 6)]
-	elseif rarity >= 80 and rarity < 90 then
-		return egglist[math.random(7, 9)]
-	elseif rarity >= 90 and rarity <= 100 then
-		return egglist[math.random(10, 12)]
-	else 
-		return egglist[math.random(1, 4)]
-	end
-	
-end
+
 local function round(number)
 	-- round to 2 decimal points 
 	return tonumber(string.format("%.2f", number))

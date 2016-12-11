@@ -132,17 +132,38 @@ minetest.register_node('christmas:present_small_purple', {
 minetest.register_craft({
 	output = 'christmas:present_red',
 	type = 'shapeless',
-	recipe =  {'default:chest', 'dye:red'}
+	recipe =  {'group:wood', 'dye:red', 'default:paper'}
 })
 
 minetest.register_craft({
 	output = 'christmas:present_yellow',
 	type = 'shapeless',
-	recipe = {'default:chest', 'dye:yellow'}
+	recipe = {'group:wood', 'dye:yellow', 'default:paper'}
 })
 
 minetest.register_craft({
 	output = 'christmas:present_green',
 	type = 'shapeless',
-	recipe = {'default:chest', 'dye:dark_green'}
+	recipe = {'group:wood', 'dye:dark_green', 'default:paper'}
 })
+
+minetest.register_craft({
+	output = 'christmas:present_small_red 2',	
+	type = 'shapeless',
+	recipe = {'christmas:present_red'},
+})
+
+minetest.register_craft({
+	output = 'christmas:present_small_blue 2',	
+	type = 'shapeless',
+	recipe = {'group:wood', 'dye:blue', 'default:paper'}
+})
+
+minetest.register_craft({
+	output = 'christmas:present_small_purple 2',	
+	type = 'shapeless',
+	recipe = {'group:wood', 'dye:violet', 'default:paper'}
+})
+
+
+

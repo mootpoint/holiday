@@ -25,20 +25,20 @@ along with easter.  If not, see <http://www.gnu.org/licenses/>.
 -- egg drop function
 
 local function randomegg(egglist)
-	local droprarity = math.random(1, 100)
+	local droprarity = math.random(1, 200)
 	local rarity = math.random(1, 100)
 	if droprarity < 20 then
 		if rarity < 40 then
-			droprarity, rarity = 101
+			droprarity, rarity = 201
 			return egglist[math.random(1, 4)]
 		elseif rarity >= 40 and rarity < 90 then
-			droprarity, rarity = 101
+			droprarity, rarity = 201
 			return egglist[math.random(5, 6)]
 		elseif rarity >= 90 and rarity < 95 then
-			droprarity, rarity = 101
+			droprarity, rarity = 201
 			return egglist[math.random(7, 9)]
 		elseif rarity >= 95 and rarity <= 100 then
-			droprarity, rarity = 101
+			droprarity, rarity = 201
 			return egglist[math.random(10, 12)]
 		else 
 			return nil

@@ -25,19 +25,23 @@ along with easter.  If not, see <http://www.gnu.org/licenses/>.
 -- egg drop function
 
 local function randomegg(egglist)
-	local droprarity = math.random(1, 30)
+	local droprarity = math.random(1, 100)
 	local rarity = math.random(1, 100)
-	if droprarity == 1 then
-		if rarity < 50 then
+	if droprarity < 20 then
+		if rarity < 40 then
+			droprarity, rarity = 101
 			return egglist[math.random(1, 4)]
-		elseif rarity >= 50 and rarity < 80 then
+		elseif rarity >= 40 and rarity < 90 then
+			droprarity, rarity = 101
 			return egglist[math.random(5, 6)]
-		elseif rarity >= 80 and rarity < 90 then
+		elseif rarity >= 90 and rarity < 95 then
+			droprarity, rarity = 101
 			return egglist[math.random(7, 9)]
-		elseif rarity >= 90 and rarity <= 100 then
+		elseif rarity >= 95 and rarity <= 100 then
+			droprarity, rarity = 101
 			return egglist[math.random(10, 12)]
 		else 
-			return egglist[math.random(1, 4)]
+			return nil
 		end
 	else
 		return nil
@@ -62,27 +66,6 @@ local egglist = {
 }
 
 
--- Teleport player to random location.
-
-local function randteleport(user)
-	-- p.x, p.y, and p.z will be the position at coordinates
-	local p = {}
-	p.x = math.random(-4000, 4000)
-	p.y = math.random(-1000, 1000)
-	p.z = math.random(-4000, 4000)
-	if p.x and p.y and p.z then
-			local lm = tonumber(minetest.setting_get("map_generation_limit") or 31000)
-			if p.x < -lm or p.x > lm or p.y < -lm or p.y > lm or p.z < -lm or p.z > lm then
-				return false, "Cannot teleport out of map bounds!"
-			end
-			teleportee = core.get_player_by_name(user)
-			if teleportee then
-				teleportee:setpos(p)
-				return true, "Teleporting to "..core.pos_to_string(p)
-			end
-	end
-end
-		
 -- functions to control random numbers and random decimals
 
 -- rounding function 
@@ -473,53 +456,35 @@ minetest.register_craftitem('easter:egg_zig_zag', {
 	groups = {not_in_creative_inventory = 1,},
 	-- Teleport to random location.
 	on_use =  function(itemstack, user)
-		local p_name = user:get_player_name()
-		randteleport(p_name)
-		minetest.chat_send_player(p_name, 'My head is spinning... Where are we?')
+		local place = math.random(1, 10)
 		itemstack:take_item()
+		if place == 1 then
+			user:setpos( { x=45, y=6, z=168 } ) -- behind spawn mine
+		elseif place == 2 then
+			user:setpos( { x=595, y=6, z=405 } ) -- arena
+		elseif place == 3 then
+			user:setpos( { x=1111, y=24, z=-552 } ) -- above fountain at /hub
+		elseif place == 4 then
+			user:setpos( { x=-1777, y=23, z=748 } ) -- out near Hello Nemo
+		elseif place == 5 then
+			user:setpos( { x=0, y=28, z=169 } ) -- Geronimo
+		elseif place == 6 then
+			user:setpos( { x=2298, y=24, z=4400 } ) -- near edge of server
+		elseif place == 7 then
+			user:setpos( { x=1500, y=3, z=400 } ) -- random lake
+		elseif place == 8 then
+			user:setpos( { x=396, y=20, z=364 } ) -- Aquarium
+		elseif place == 9 then
+			user:setpos( { x=3000, y=33, z=-2000 } ) -- snowfield in the way out
+		else
+			user:setpos( { x=-166, y=-103, z=276 } ) -- Headache Room in hd's castle
+		end
+		
 		return itemstack
+
 	end
 		
 })
---i believe while this is more accurate for digging easter eggs, it will invite unwanted strip mining.
---[[
-minetest.override_item('default:dirt_with_grass', {
-	drop = {
-		max_items = 2,
-		items = {
-			{items = {'default:dirt'},     rarity = 1 },
-			{items = {'easter:egg_white'}, rarity = 30},
-		}
-	}
-})
-]]--
-
-
--- item list as suggested by kaeza
--- not working as expected items too frequent to remove soon
---[[
-minetest.override_item('default:stone', {
-	drop = {
-		max_items = 2,
-		items = {
-			{items = {'default:cobble'},	   rarity = 1},
-			{items = {'easter:egg_checkered'}, rarity = 50},
-			{items = {'easter:egg_white'},     rarity = 50},
-			{items = {'easter:egg_food'},      rarity = 50},
-			{items = {'easter:egg_space'},	   rarity = 80},
-			{items = {'easter:egg_mario'},     rarity = 80},
-			{items = {'easter:egg_speed'},     rarity = 80},
-			{items = {'easter:egg_striped'},   rarity = 80},
-			{items = {'easter:egg_zig_zag'},   rarity = 150},
-			{items = {'easter:egg_diamond'},   rarity = 150},
-			{items = {'easter:egg_black'},     rarity = 500},
-			{items = {'easter:egg_time'},      rarity = 500},
-			{items = {'easter:egg_mese'},      rarity = 500},
-
-		}
-	}
-})
-]]--
 
 minetest.override_item('default:stone', {
 	after_dig_node = function(pos, oldnode, oldmetadata, digger)

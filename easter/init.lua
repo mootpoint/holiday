@@ -485,18 +485,36 @@ minetest.register_craftitem('easter:egg_zig_zag', {
 	end
 		
 })
-
-minetest.override_item('default:stone', {
-	after_dig_node = function(pos, oldnode, oldmetadata, digger)
-		local egg = randomegg(egglist)
-		if egg ~= nil then
-			local inv = digger:get_inventory()
-			if inv:room_for_item('main', egg) then
-				digger:get_inventory():add_item('main', egg)
+local now = os.time()
+--[[
+--remove this block for testing purposes, it works 
+local easterday = {
+	year = os.date('*t',now).year,
+	month = 03,
+	day = 27,
+}
+]]--
+--so we can test, we call todays date for the egg drops
+local easterday = {
+	year = os.date('*t',now).year,
+	month = os.date('*t',now).month,
+	day = os.date('*t',now).day,
+}
+if math.abs(now - os.time(easterday)) > 604800 then -- one week for players to find eggs
+	return false -- do nothing to stone drops
+else 
+	minetest.override_item('default:stone', {
+		after_dig_node = function(pos, oldnode, oldmetadata, digger)
+			local egg = randomegg(egglist)
+			if egg ~= nil then
+				local inv = digger:get_inventory()
+				if inv:room_for_item('main', egg) then
+					digger:get_inventory():add_item('main', egg)
+				end
 			end
 		end
-	end
-})
+	})
+end
 			
 			
 		

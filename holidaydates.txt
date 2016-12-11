@@ -1,0 +1,47 @@
+-- easter 20 year schedule
+
+2016 	March 27 	
+2017 	April 16
+2018 	April 1 	
+2019 	April 21 	
+2020 	April 12 	
+2021 	April 4 	
+2022 	April 17 	
+2023 	April 9 	
+2024 	March 31 	
+2025 	April 20
+2026 	April 5 	
+2027 	March 28 	
+2028 	April 16
+2029 	April 1 	
+2030 	April 21 	
+2031 	April 13
+2032 	March 28 	
+2033 	April 17 	
+2034 	April 9
+2035 	March 25 	
+2036 	April 13 	
+
+-- Thanksgiving Day
+2017	Nov 23
+2018	Nov 22
+2019	Nov 28
+2020	Nov 26
+2021	Nov 25
+2022	Nov 24
+2023	Nov 23
+2024	Nov 28
+2025	Nov 27
+2026	Nov 26
+2027	Nov 25
+2028	Nov 23
+2029	Nov 22
+2030	Nov 28
+2031	Nov 27
+2032	Nov 25
+2033	Nov 24
+2034	Nov 23
+2035	Nov 22
+2036	Nov 27
+
+-- 

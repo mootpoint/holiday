@@ -1,4 +1,4 @@
--- halloween mod by mootpoint
+-- trick_or_treat mod by mootpoint
 -- Copyright (C) 2016 Tucker 'mootpoint' Bamberg
 -- Foz name here
 --
@@ -54,31 +54,31 @@ local candy = {
 
 local distribution = {1, 1, 1, 2, 2, 3}
 
-minetest.register_tool('halloween:candy_bucket', {
+minetest.register_tool('trick_or_treat:candy_bucket', {
 		description = 'Candy Bucket',
-		inventory_image = 'halloween_candy_bucket.png',
-		wield_image     = 'halloween_candy_bucket.png^[transformR270]',
+		inventory_image = 'trick_or_treat_candy_bucket.png',
+		wield_image     = 'trick_or_treat_candy_bucket.png^[transformR270]',
 })
 
 if wieldview then
-	wieldview.transform['halloween:candy_bucket']='R180'
+	wieldview.transform['trick_or_treat:candy_bucket']='R180'
 end
 
 minetest.register_craft({
-	output = 'halloween:candy_bucket',
+	output = 'trick_or_treat:candy_bucket',
 	recipe = {
 		{'group:stick'},
 		{'farming:pumpkin_face'},
 	}
 })
 
-minetest.register_node('halloween:treat_box', {
+minetest.register_node('trick_or_treat:treat_box', {
 		description = 'Box that gives candy when punched',
-		tiles = {'halloween_treat_box.png'},
+		tiles = {'trick_or_treat_treat_box.png'},
 		groups = {oddly_breakable_by_hand = 1, not_in_creative_inventory = 1},
 		on_punch = function(pos, node, puncher, pointed_thing)
 			local wielded_item = puncher:get_wielded_item():get_name()
-			if wielded_item == 'halloween:candy_bucket' then
+			if wielded_item == 'trick_or_treat:candy_bucket' then
 
 				local meta = minetest.get_meta(pos)
 				local last = meta:get_string('last_user')
@@ -108,7 +108,7 @@ minetest.register_node('halloween:treat_box', {
 					local inv = puncher:get_inventory()
 					if inv:room_for_item('main', item..' '..amount) then
 						puncher:get_inventory():add_item('main', item..' '..amount)
-						minetest.log('action', 'halloween: Gave '..name..' '..amount..
+						minetest.log('action', 'trick_or_treat: Gave '..name..' '..amount..
 							' '..item..' at '..minetest.pos_to_string(pos))
 					else
 						minetest.chat_send_player(name,

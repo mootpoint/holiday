@@ -25,6 +25,7 @@ minetest.register_node('christmas:snowman_head', {
 	description = 'Snowman Head',
 	drawtype = 'nodebox',
 	paramtype = 'light',
+	paramtype2 = 'facedir',
 	tiles = {
 		"christmas_snowman_head_top.png",
 		"christmas_snowman_head_top.png",
@@ -39,6 +40,12 @@ minetest.register_node('christmas:snowman_head', {
 		fixed = {
 			{-0.375, -0.5, -0.375, 0.375, 0.3125, 0.375}, -- NodeBox1
 			{-0.4375, -0.4375, -0.4375, 0.4375, 0.25, 0.4375}, -- NodeBox2
+		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
 		}
 	},
 	groups = {cracky = 2, crumbly = 2, choppy = 2, oddly_breakable_by_hand = 2, melts = 1, icemaker = 1},
@@ -74,12 +81,19 @@ minetest.register_node('christmas:snowman_middle', {
 	},
 	drawtype = "nodebox",
 	paramtype = "light",
+	paramtype2 = 'facedir',
 	node_box = {
 		type = "fixed",
 		fixed = {
 			{-0.375, -0.5, -0.375, 0.375, 0.5, 0.375}, -- NodeBox1
 			{-0.4375, -0.4375, -0.4375, 0.4375, 0.4375, 0.4375}, -- NodeBox2
 			{-0.5, -0.375, -0.5, 0.5, 0.375, 0.5}, -- NodeBox3
+		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
 		}
 	},
 	groups = {cracky = 2, crumbly = 2, choppy = 2, oddly_breakable_by_hand = 2, melts = 1, icemaker = 1},
@@ -109,12 +123,19 @@ minetest.register_node('christmas:snowman_bottom', {
 	},
 	drawtype = "nodebox",
 	paramtype = "light",
+	paramtype2 = 'facedir',
 	node_box = {
 		type = "fixed",
 		fixed = {
 			{-0.375, -0.5, -0.375, 0.375, 0.5, 0.375}, -- NodeBox1
 			{-0.4375, -0.4375, -0.4375, 0.4375, 0.4375, 0.4375}, -- NodeBox2
 			{-0.5, -0.375, -0.5, 0.5, 0.375, 0.5}, -- NodeBox3
+		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
 		}
 	},
 	groups = {cracky = 2, crumbly = 2, choppy = 2, oddly_breakable_by_hand = 2, melts = 1, icemaker = 1},

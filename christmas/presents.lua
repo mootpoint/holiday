@@ -30,7 +30,8 @@ minetest.register_node('christmas:present_red', {
 		'christmas_present_red_side.png',
 		'christmas_present_red_side.png'
 	},
-	groups = {oddly_breakable_by_hand = 3}
+	groups = {oddly_breakable_by_hand = 3},
+	paramtype2 = 'facedir',
 })
 
 minetest.register_node('christmas:present_yellow', {
@@ -43,7 +44,8 @@ minetest.register_node('christmas:present_yellow', {
 		'christmas_present_yellow_side.png',
 		'christmas_present_yellow_side.png'
 	},
-	groups = {oddly_breakable_by_hand = 3}
+	groups = {oddly_breakable_by_hand = 3},
+	paramtype2 = 'facedir',
 })
 
 minetest.register_node('christmas:present_green', {
@@ -57,6 +59,7 @@ minetest.register_node('christmas:present_green', {
 		'christmas_present_green_side.png'
 	},
 	groups = {oddly_breakable_by_hand = 3,},
+	paramtype2 = 'facedir',
 	
 })
 
@@ -79,6 +82,7 @@ minetest.register_node('christmas:present_small_red', {
 		}
 	},
 	groups = {oddly_breakable_by_hand = 3,},
+	paramtype2 = 'facedir',
 	
 })
 
@@ -101,6 +105,7 @@ minetest.register_node('christmas:present_small_blue', {
 		}
 	},
 	groups = {oddly_breakable_by_hand = 3,},
+	paramtype2 = 'facedir',
 	
 })
 
@@ -123,6 +128,7 @@ minetest.register_node('christmas:present_small_purple', {
 		}
 	},
 	groups = {oddly_breakable_by_hand = 3,},
+	paramtype2 = 'facedir',
 	
 })
 

@@ -20,6 +20,8 @@ along with christmas.  If not, see <http://www.gnu.org/licenses/>.
 
 
 -- Snowman 
+local watersource = 'default:water_source'
+local waterflowing = 'default:water_flowing'
 
 minetest.register_node('christmas:snowman_head', {
 	description = 'Snowman Head',
@@ -34,7 +36,6 @@ minetest.register_node('christmas:snowman_head', {
 		"christmas_snowman_head_side.png",
 		"christmas_snowman_head_front.png"
 	},
-
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -49,12 +50,11 @@ minetest.register_node('christmas:snowman_head', {
 		}
 	},
 	groups = {cracky = 2, crumbly = 2, choppy = 2, oddly_breakable_by_hand = 2, melts = 1, icemaker = 1},
-	
 	after_destruct = function(pos, oldnode)
 		--use group melts = 1 to 'melt' the snowman into a water source, then check for the water source after dug to make sure
 		--it wasn't just dug
-		if minetest.get_node(pos).name == 'default:water_source' then
-			--use 2 minetest.env:add_item calls because name = 'default:coal_lump 2' did not work.			
+		if minetest.get_node(pos).name == watersource then
+			--use 2 minetest.add_item calls because name = 'default:coal_lump 2' did not work.			
 			minetest.add_item(pos, {name = 'default:coal_lump'})
 			minetest.add_item(pos, {name = 'default:coal_lump'})
 			-- check if Farming_plus installed and give carrot back instead of stick
@@ -64,7 +64,7 @@ minetest.register_node('christmas:snowman_head', {
 				minetest.add_item(pos, {name = 'default:stick'})
 			end
 			-- replace water_source with water_flowing after items are given. this replicates the snowman 'melting'
-			minetest.add_node(pos, {name = 'default:water_flowing'})
+			minetest.add_node(pos, {name = waterflowing})
 		end
 	end,
 })
@@ -85,9 +85,9 @@ minetest.register_node('christmas:snowman_middle', {
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-0.375, -0.5, -0.375, 0.375, 0.5, 0.375}, -- NodeBox1
-			{-0.4375, -0.4375, -0.4375, 0.4375, 0.4375, 0.4375}, -- NodeBox2
-			{-0.5, -0.375, -0.5, 0.5, 0.375, 0.5}, -- NodeBox3
+			{-0.375, -0.5, -0.375, 0.375, 0.5, 0.375},
+			{-0.4375, -0.4375, -0.4375, 0.4375, 0.4375, 0.4375},
+			{-0.5, -0.375, -0.5, 0.5, 0.375, 0.5},
 		}
 	},
 	selection_box = {
@@ -100,13 +100,13 @@ minetest.register_node('christmas:snowman_middle', {
 	after_destruct = function(pos, oldnode)
 		--use group melts = 1 to 'melt' the snowman into a water source, then check for the water source after dug to make sure
 		--it wasn't just dug
-		if minetest.get_node(pos).name == 'default:water_source' then
-			--use 3 minetest.env:add_item calls because name = 'default:coal_lump 3' did not work.			
+		if minetest.get_node(pos).name == watersource then
+			--use 3 minetest.add_item calls because name = 'default:coal_lump 3' did not work.			
 			minetest.add_item(pos, {name = 'default:coal_lump'})
 			minetest.add_item(pos, {name = 'default:coal_lump'})
 			minetest.add_item(pos, {name = 'default:coal_lump'})
 			-- replace water_source with water_flowing after items are given. this replicates the snowman 'melting'
-			minetest.add_node(pos, {name = 'default:water_flowing'})
+			minetest.add_node(pos, {name = waterflowing})
 		end
 	end,
 })
@@ -127,9 +127,9 @@ minetest.register_node('christmas:snowman_bottom', {
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-0.375, -0.5, -0.375, 0.375, 0.5, 0.375}, -- NodeBox1
-			{-0.4375, -0.4375, -0.4375, 0.4375, 0.4375, 0.4375}, -- NodeBox2
-			{-0.5, -0.375, -0.5, 0.5, 0.375, 0.5}, -- NodeBox3
+			{-0.375, -0.5, -0.375, 0.375, 0.5, 0.375},
+			{-0.4375, -0.4375, -0.4375, 0.4375, 0.4375, 0.4375},
+			{-0.5, -0.375, -0.5, 0.5, 0.375, 0.5}, 
 		}
 	},
 	selection_box = {
@@ -142,8 +142,8 @@ minetest.register_node('christmas:snowman_bottom', {
 
 	-- snow will not replace with water_flowing on melt 2 like it should so we work around it until they fix it.
 	after_destruct = function(pos, oldnode)
-		if minetest.get_node(pos).name == 'default:water_source' then
-			minetest.add_node(pos, {name = 'default:water_flowing'})
+		if minetest.get_node(pos).name == watersource then
+			minetest.add_node(pos, {name = waterflowing})
 		end
 	end,
 })

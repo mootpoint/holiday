@@ -54,15 +54,16 @@ local register_driedel = function(name, def, color)
 	
 end
 
+local wood = 'default_wood.png'
 
 minetest.register_node('christmas:driedel_wood', {
 	tiles = {
-		'default_wood.png',
-		'default_wood.png',
-		'default_wood.png',
-		'default_wood.png',
-		'default_wood.png',
-		'default_wood.png'
+		wood,
+		wood,
+		wood,
+		wood,
+		wood,
+		wood,
 	},
 	drawtype = 'nodebox',
 	paramtype = 'light',
@@ -72,12 +73,12 @@ minetest.register_node('christmas:driedel_wood', {
 
 		type = 'fixed',
 		fixed = {
-			{-0.0625, -0.5, -0.0625, 0.0625, 0.5, 0.0625}, -- NodeBox1
-			{-0.375, 0.0625, -0.375, 0.375, 0.1875, 0.375}, -- NodeBox2
-			{-0.3125, -0.125, -0.3125, 0.3125, 0.0625, 0.3125}, -- NodeBox3
-			{-0.25, -0.25, -0.25, 0.25, -0.125, 0.25}, -- NodeBox4
-			{-0.1875, -0.3125, -0.1875, 0.1875, -0.25, 0.1875}, -- NodeBox5
-			{-0.125, -0.375, -0.125, 0.125, -0.3125, 0.125}, -- NodeBox6
+			{-0.0625, -0.5, -0.0625, 0.0625, 0.5, 0.0625},
+			{-0.375, 0.0625, -0.375, 0.375, 0.1875, 0.375},
+			{-0.3125, -0.125, -0.3125, 0.3125, 0.0625, 0.3125},
+			{-0.25, -0.25, -0.25, 0.25, -0.125, 0.25}, 
+			{-0.1875, -0.3125, -0.1875, 0.1875, -0.25, 0.1875},
+			{-0.125, -0.375, -0.125, 0.125, -0.3125, 0.125},
 		}
 	},
 	selection_box = {
@@ -99,24 +100,20 @@ register_driedel('christmas:driedel_gold', {
 	description = 'Gold Driedel',
 }, 'gold')
 
-
 -- Red Driedel
 register_driedel('christmas:driedel_red', {
 	description = 'Red Driedel',
 }, 'red')
-
 
 -- Gray Driedel
 register_driedel('christmas:driedel_gray', {
 	description = 'Gray Driedel',
 }, 'gray')
 
-
 -- Green Driedel
 register_driedel('christmas:driedel_green', {
 	description = 'Green Driedel',
 }, 'green')
-
 
 -- Yellow Driedel
 register_driedel('christmas:driedel_yellow', {
@@ -125,13 +122,10 @@ register_driedel('christmas:driedel_yellow', {
 
 -- Craft Recipes for driedel
 
-
-
 minetest.register_craft({
 	output = 'christmas:driedel_blue',
 	type = 'shapeless',
 	recipe = {'christmas:driedel_wood', 'dye:blue',}
-
 })
 
 minetest.register_craft({

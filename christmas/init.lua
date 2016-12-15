@@ -26,6 +26,7 @@ dofile(modpath..'/snowman.lua')
 dofile(modpath..'/presents.lua')
 dofile(modpath..'/driedel.lua')
 dofile(modpath..'/food.lua')
+dofile(modpath..'/wreaths.lua')
 
 minetest.log(
 	'action',

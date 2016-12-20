@@ -25,7 +25,7 @@ along with easter.  If not, see <http://www.gnu.org/licenses/>.
 -- egg drop function
 
 local function randomegg(egglist)
-	local droprarity = math.random(1, 200)
+	local droprarity = math.random(1, 500)
 	local rarity = math.random(1, 100)
 	if droprarity < 20 then
 		if rarity < 40 then
@@ -443,13 +443,32 @@ minetest.register_craftitem('easter:egg_white', {
 	groups = {not_in_creative_inventory = 1,},
 	-- set physics to normal
 	on_use = function(itemstack, user)
+		local light = (minetest.get_timeofday()*2)
 		user:set_physics_override(1, 1, 1)
+		user:override_day_night_ratio(nil)
 		minetest.chat_send_player(user:get_player_name(), 'This egg tastes Normal... like vanilla')
 		minetest.do_item_eat(2,nil,itemstack,user)
 		return itemstack
 	end
 })
 
+minetest.register_craftitem('easter:egg_night', {
+	description = 'Easter Egg Night',
+	inventory_image = 'easter_egg_night.png',
+	groups = {not_in_creative_inventory = 1,},
+	-- code for night function modified from Lightcorrect mod by mootpoint
+	on_use = function(itemstack, user)
+		local light = (minetest.get_timeofday()*2)
+		itemstack:take_item()
+		if light < 0.47 then
+			user:override_day_night_ratio((light)+0.4)
+		else
+			user:override_day_night_ratio((light)-0.4)
+		end
+		return itemstack
+
+	end,
+})
 minetest.register_craftitem('easter:egg_zig_zag', {
 	description = 'Easter Egg Zig Zag',
 	inventory_image = 'easter_egg_zig_zag.png',
@@ -495,11 +514,13 @@ local easterday = {
 }
 ]]--
 --so we can test, we call todays date for the egg drops
+--  comment this out when you add it to your server
 local easterday = {
 	year = os.date('*t',now).year,
 	month = os.date('*t',now).month,
 	day = os.date('*t',now).day,
 }
+
 if math.abs(now - os.time(easterday)) > 604800 then -- one week for players to find eggs
 	return false -- do nothing to stone drops
 else 

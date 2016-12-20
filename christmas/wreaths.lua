@@ -8,6 +8,7 @@ minetest.register_node('christmas:wreath_unlit', {
 		'wreath.png',
 		'wreath.png'
 	},
+	groups = {oddly_breakable_by_hand = 3},
 	drawtype = 'nodebox',
 	paramtype = 'light',
 	paramtype2 = 'facedir',
@@ -49,6 +50,7 @@ minetest.register_node('christmas:wreath_lit', {
 		'wreath.png',
 		'wreath.png'
 	},
+	groups = {oddly_breakable_by_hand = 3},
 	drawtype = 'nodebox',
 	paramtype = 'light',
 	paramtype2 = 'facedir',

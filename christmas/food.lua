@@ -67,6 +67,16 @@ minetest.register_craftitem('christmas:star_cookie', {
 	on_use = minetest.item_eat(3),
 })
 
+-----------------------
+-- Register Yule Log --
+-----------------------
+
+minetest.register_craftitem('christmas:yule_log', {
+	description = 'Yule Log',
+	inventory_image = 'christmas_yule_log.png',
+	on_use = minetest.item_eat(4),
+})
+
 -------------------------------
 -- Register Crafting Recipes --
 -------------------------------
@@ -138,5 +148,11 @@ minetest.register_craft({
 		{ 'christmas:star_cutter', 'christmas:star_cutter' }
 	}
 
+})
+
+minetest.register_craft({
+	output = 'christmas:yule_log',
+	type = 'shapeless',
+	recipe = {'mtfoods:chocolate_cake', 'mtfoods:cream'}
 })
 

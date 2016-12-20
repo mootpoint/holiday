@@ -33,13 +33,13 @@ local function randomegg(egglist)
 			return egglist[math.random(1, 4)]
 		elseif rarity >= 40 and rarity < 90 then
 			droprarity, rarity = 201
-			return egglist[math.random(5, 6)]
+			return egglist[math.random(5, 7)]
 		elseif rarity >= 90 and rarity < 95 then
 			droprarity, rarity = 201
-			return egglist[math.random(7, 9)]
+			return egglist[math.random(8, 10)]
 		elseif rarity >= 95 and rarity <= 100 then
 			droprarity, rarity = 201
-			return egglist[math.random(10, 12)]
+			return egglist[math.random(11, 13)]
 		else 
 			return nil
 		end
@@ -59,6 +59,7 @@ local egglist = {
 	'easter:egg_speed',
 	'easter:egg_striped',
 	'easter:egg_zig_zag',
+	'easter:egg_night',
 	'easter:egg_diamond',
 	'easter:egg_black',
 	'easter:egg_time',

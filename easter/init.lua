@@ -113,7 +113,7 @@ local common = {
 	'default:tree',
 	'default:desert_stone',
 	'default:desert_cobble',
-	'default:ingot_steel',
+	'default:steel_ingot',
 	'default:snow',
 	'default:snowblock',
 	'default:gravel',
@@ -506,7 +506,7 @@ minetest.register_craftitem('easter:egg_zig_zag', {
 		
 })
 local now = os.time()
-
+--[[
 --comment this block for testing purposes, it works 
 -- this only allows eggs to drop near the real life easter date
 local easterday = {
@@ -515,17 +515,17 @@ local easterday = {
 	day = 27,
 }
 -- comment here as well
-
+]]--
 --so we can test, we call todays date for the egg drops
 --  uncomment this out when you add it to your server, if you want eggs year round.
---[[
+
 local easterday = {
 	year = os.date('*t',now).year,
 	month = os.date('*t',now).month,
 	day = os.date('*t',now).day,
 }
 -- delete the comment below as well
-]]--
+
 if math.abs(now - os.time(easterday)) > 604800 then -- one week before and after for players to find eggs
 	return false -- do nothing to stone drops
 else 

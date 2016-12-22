@@ -29,27 +29,27 @@ minetest.register_node('christmas:snowman_head', {
 	paramtype = 'light',
 	paramtype2 = 'facedir',
 	tiles = {
-		"christmas_snowman_head_top.png",
-		"christmas_snowman_head_top.png",
-		"christmas_snowman_head_side.png",
-		"christmas_snowman_head_side.png",
-		"christmas_snowman_head_side.png",
-		"christmas_snowman_head_front.png"
+		'default_snow.png',
+		'default_snow.png',
+		'default_snow.png',
+		'default_snow.png',
+		'default_snow.png',
+		'christmas_snowman_head_front.png'
 	},
 	node_box = {
-		type = "fixed",
+		type = 'fixed',
 		fixed = {
 			{-0.375, -0.5, -0.375, 0.375, 0.3125, 0.375}, -- NodeBox1
 			{-0.4375, -0.4375, -0.4375, 0.4375, 0.25, 0.4375}, -- NodeBox2
 		}
 	},
 	selection_box = {
-		type = "fixed",
+		type = 'fixed',
 		fixed = {
 			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
 		}
 	},
-	groups = {cracky = 2, crumbly = 2, choppy = 2, oddly_breakable_by_hand = 2, melts = 1, icemaker = 1},
+	groups = {cracky = 2, crumbly = 1, choppy = 2, oddly_breakable_by_hand = 3, melts = 1, icemaker = 1},
 	after_destruct = function(pos, oldnode)
 		--use group melts = 1 to 'melt' the snowman into a water source, then check for the water source after dug to make sure
 		--it wasn't just dug
@@ -72,18 +72,18 @@ minetest.register_node('christmas:snowman_head', {
 minetest.register_node('christmas:snowman_middle', {
 	description = 'Snowman Middle',
 	tiles = {
-		"christmas_snowman_tb.png",
-		"christmas_snowman_tb.png",
-		"christmas_snowman_side.png",
-		"christmas_snowman_side.png",
-		"christmas_snowman_side.png",
-		"christmas_snowman_middle_buttons.png"
+		'default_snow.png',
+		'default_snow.png',
+		'default_snow.png',
+		'default_snow.png',
+		'default_snow.png',
+		'christmas_snowman_middle_buttons.png'
 	},
-	drawtype = "nodebox",
-	paramtype = "light",
+	drawtype = 'nodebox',
+	paramtype = 'light',
 	paramtype2 = 'facedir',
 	node_box = {
-		type = "fixed",
+		type = 'fixed',
 		fixed = {
 			{-0.375, -0.5, -0.375, 0.375, 0.5, 0.375},
 			{-0.4375, -0.4375, -0.4375, 0.4375, 0.4375, 0.4375},
@@ -91,12 +91,12 @@ minetest.register_node('christmas:snowman_middle', {
 		}
 	},
 	selection_box = {
-		type = "fixed",
+		type = 'fixed',
 		fixed = {
 			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
 		}
 	},
-	groups = {cracky = 2, crumbly = 2, choppy = 2, oddly_breakable_by_hand = 2, melts = 1, icemaker = 1},
+	groups = {cracky = 2, crumbly = 1, choppy = 2, oddly_breakable_by_hand = 3, melts = 1, icemaker = 1},
 	after_destruct = function(pos, oldnode)
 		--use group melts = 1 to 'melt' the snowman into a water source, then check for the water source after dug to make sure
 		--it wasn't just dug
@@ -114,18 +114,18 @@ minetest.register_node('christmas:snowman_middle', {
 minetest.register_node('christmas:snowman_bottom', {
 	description = 'Snowman Bottom',
 	tiles = {
-		"christmas_snowman_tb.png",
-		"christmas_snowman_tb.png",
-		"christmas_snowman_side.png",
-		"christmas_snowman_side.png",
-		"christmas_snowman_side.png",
-		"christmas_snowman_side.png"
+		'default_snow.png',
+		'default_snow.png',
+		'default_snow.png',
+		'default_snow.png',
+		'default_snow.png',
+		'default_snow.png',
 	},
-	drawtype = "nodebox",
-	paramtype = "light",
+	drawtype = 'nodebox',
+	paramtype = 'light',
 	paramtype2 = 'facedir',
 	node_box = {
-		type = "fixed",
+		type = 'fixed',
 		fixed = {
 			{-0.375, -0.5, -0.375, 0.375, 0.5, 0.375},
 			{-0.4375, -0.4375, -0.4375, 0.4375, 0.4375, 0.4375},
@@ -133,7 +133,7 @@ minetest.register_node('christmas:snowman_bottom', {
 		}
 	},
 	selection_box = {
-		type = "fixed",
+		type = 'fixed',
 		fixed = {
 			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
 		}

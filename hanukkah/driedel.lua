@@ -1,10 +1,10 @@
---christmas mod for minetest
+--hanukkah mod for minetest
 
 --[[
 Copyright (C) 2016 Joseph 'Tucker' Bamberg
 leave room for Foz to copyright if he wants
-This file is part of christmas.
-christmas is free software: you can redistribute it and/or modify
+This file is part of hanukkah.
+hanukkah is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
@@ -13,7 +13,7 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
-along with christmas.  If not, see <http://www.gnu.org/licenses/>.
+along with hanukkah.  If not, see <http://www.gnu.org/licenses/>.
 ]]
 
 -- far from a complete mod use at your own risk
@@ -21,12 +21,12 @@ along with christmas.  If not, see <http://www.gnu.org/licenses/>.
 
 local register_driedel = function(name, def, color)
 	def.tiles = {
-		'christmas_driedel_'..color..'_tb.png',
-		'christmas_driedel_'..color..'_tb.png',
-		'christmas_driedel_'..color..'_side_a.png',
-		'christmas_driedel_'..color..'_side_b.png',
-		'christmas_driedel_'..color..'_side_c.png',
-		'christmas_driedel_'..color..'_side_d.png',
+		'hannukah_driedel_'..color..'_tb.png',
+		'hannukah_driedel_'..color..'_tb.png',
+		'hannukah_driedel_'..color..'_side_a.png',
+		'hannukah_driedel_'..color..'_side_b.png',
+		'hannukah_driedel_'..color..'_side_c.png',
+		'hannukah_driedel_'..color..'_side_d.png',
 	}
 	def.drawtype = 'nodebox'
 	def.paramtype = 'light'
@@ -49,14 +49,14 @@ local register_driedel = function(name, def, color)
 		}
 	}
 	def.groups = {snappy = 3, oddly_breakable_by_hand = 2,}
-	def.inventory_image = 'christmas_driedel_'..color..'.png',
+	def.inventory_image = 'hanukkah_driedel_'..color..'.png',
 	minetest.register_node(name, def)
 	
 end
 
 local wood = 'default_wood.png'
 
-minetest.register_node('christmas:driedel_wood', {
+minetest.register_node('hanukkah:driedel_wood', {
 	tiles = {
 		wood,
 		wood,
@@ -91,45 +91,45 @@ minetest.register_node('christmas:driedel_wood', {
 })
 
 -- Blue Driedel
-register_driedel('christmas:driedel_blue', {
+register_driedel('hanukkah:driedel_blue', {
 	description = 'Blue Driedel',
 }, 'blue')
 
 -- Gold Driedel
-register_driedel('christmas:driedel_gold', {
+register_driedel('hanukkah:driedel_gold', {
 	description = 'Gold Driedel',
 }, 'gold')
 
 -- Red Driedel
-register_driedel('christmas:driedel_red', {
+register_driedel('hanukkah:driedel_red', {
 	description = 'Red Driedel',
 }, 'red')
 
 -- Gray Driedel
-register_driedel('christmas:driedel_gray', {
+register_driedel('hanukkah:driedel_gray', {
 	description = 'Gray Driedel',
 }, 'gray')
 
 -- Green Driedel
-register_driedel('christmas:driedel_green', {
+register_driedel('hanukkah:driedel_green', {
 	description = 'Green Driedel',
 }, 'green')
 
 -- Yellow Driedel
-register_driedel('christmas:driedel_yellow', {
+register_driedel('hanukkah:driedel_yellow', {
 	description = 'Yellow Driedel',
 }, 'yellow')
 
 -- Craft Recipes for driedel
 
 minetest.register_craft({
-	output = 'christmas:driedel_blue',
+	output = 'hanukkah:driedel_blue',
 	type = 'shapeless',
-	recipe = {'christmas:driedel_wood', 'dye:blue',}
+	recipe = {'hanukkah:driedel_wood', 'dye:blue',}
 })
 
 minetest.register_craft({
-	output = 'christmas:driedel_wood',
+	output = 'hanukkah:driedel_wood',
 	recipe = {
 		{'default:stick',},
 		{'group:wood'   ,},
@@ -137,31 +137,31 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'christmas:driedel_gold',
+	output = 'hanukkah:driedel_gold',
 	type = 'shapeless',
-	recipe = {'christmas:driedel_wood', 'dye:green',}
+	recipe = {'hanukkah:driedel_wood', 'dye:green',}
 })
 
 minetest.register_craft({
-	output = 'christmas:driedel_gray',
+	output = 'hanukkah:driedel_gray',
 	type = 'shapeless',
-	recipe = {'christmas:driedel_wood', 'dye:grey',},
+	recipe = {'hanukkah:driedel_wood', 'dye:grey',},
 })
 
 minetest.register_craft({
-	output = 'christmas:driedel_green',
+	output = 'hanukkah:driedel_green',
 	type = 'shapeless',
-	recipe = {'christmas:driedel_wood', 'dye:dark_green',},
+	recipe = {'hanukkah:driedel_wood', 'dye:dark_green',},
 })
 
 minetest.register_craft({
-	output = 'christmas:driedel_red',
+	output = 'hanukkah:driedel_red',
 	type = 'shapeless',
-	recipe = {'christmas:driedel_wood', 'dye:red',}
+	recipe = {'hanukkah:driedel_wood', 'dye:red',}
 })
 
 minetest.register_craft({
-	output = 'christmas:driedel_yellow',
+	output = 'hanukkah:driedel_yellow',
 	type = 'shapeless',
-	recipe = {'christmas:driedel_wood', 'dye:yellow',}
+	recipe = {'hanukkah:driedel_wood', 'dye:yellow',}
 })

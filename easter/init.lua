@@ -25,8 +25,27 @@ along with easter.  If not, see <http://www.gnu.org/licenses/>.
 -- egg drop function
 
 local function randomegg(egglist)
-	local droprarity = math.random(1, 500)
+	local droprarity = math.random(1, 50000)
 	local rarity = math.random(1, 100)
+	local now = os.time()
+	local eastertime = {
+		year = os.date('*t',now).year,
+		month = 04,
+		day = 08,
+	}
+	--[[
+	local eastertime = {
+		year = os.date('*t',now).year,
+		month = os.date('*t',now).month,
+		day = os.date('*t',now).day,
+	}]]--
+	if math.abs(now - os.time(eastertime)) > 1468800 then -- 17 day date range before and after for easter to fall
+		 
+	else 
+		droprarity = math.random(1, 500)
+		
+	end
+
 	if droprarity < 20 then
 		if rarity < 40 then
 			droprarity, rarity = 201
@@ -505,43 +524,18 @@ minetest.register_craftitem('easter:egg_zig_zag', {
 	end
 		
 })
-local now = os.time()
---[[
---comment this block for testing purposes, it works 
--- this only allows eggs to drop near the real life easter date
-local easterday = {
-	year = os.date('*t',now).year,
-	month = 03,
-	day = 27,
-}
--- comment here as well
-]]--
---so we can test, we call todays date for the egg drops
---  uncomment this out when you add it to your server, if you want eggs year round.
-
-local easterday = {
-	year = os.date('*t',now).year,
-	month = os.date('*t',now).month,
-	day = os.date('*t',now).day,
-}
--- delete the comment below as well
-
-if math.abs(now - os.time(easterday)) > 604800 then -- one week before and after for players to find eggs
-	return false -- do nothing to stone drops
-else 
-	minetest.override_item('default:stone', {
-		after_dig_node = function(pos, oldnode, oldmetadata, digger)
-			local egg = randomegg(egglist)
+			
+minetest.override_item('default:stone', {
+	after_dig_node = function(pos, oldnode, oldmetadata, digger)
+		local egg = randomegg(egglist)
 			if egg ~= nil then
 				local inv = digger:get_inventory()
 				if inv:room_for_item('main', egg) then
 					digger:get_inventory():add_item('main', egg)
 				end
 			end
-		end
-	})
-end
-			
+	end
+})
 			
 		
 		

@@ -1,3 +1,7 @@
-This Mod Currently Adds three different colored presents to the minetest game
+This Mod Currently Adds a lot of different holiday themed items, cookies, snowmen, presents and much more!!
 
-Soon to come, snowman, small presents, and more!
+all code GPL version 3
+
+All textures CC-BY-SA
+
+Cookie Textures modified from mtfoods mod

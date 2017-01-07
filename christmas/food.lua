@@ -43,28 +43,130 @@ minetest.register_craftitem('christmas:star_cutter', {
 -- Register Cookies --
 ----------------------
 
-minetest.register_craftitem('christmas:candy_cane_cookie', {
+minetest.register_node('christmas:candy_cane_cookie', {
 	description = 'Candy Cane Cookie',
 	inventory_image = 'christmas_candy_cane_cookie.png',
-	on_use = minetest.item_eat(3),
+	on_use = minetest.item_eat(2),
+	tiles = {
+		'christmas_candy_cane_cookie2.png',
+		'christmas_cookie.png',
+		'christmas_cookie.png',
+		'christmas_cookie.png',
+		'christmas_cookie.png',
+		'christmas_cookie.png'
+	},
+	drawtype = 'nodebox',
+	paramtype = 'light',
+	paramtype2 = 'facedir',
+	node_box = {
+		type = 'fixed',
+		fixed = {
+			{-0.0625, -0.5, -0.125, 0.0625, -0.4375, 0.125}, 
+			{-0.125, -0.5, -0.0625, 0.125, -0.4375, 0.0625}, 
+		}
+	},
+	selection_box = {
+		type = 'fixed',
+		fixed = {-0.125, -0.5, -0.125, 0.125, -0.4375, 0.125}, 
+	},
+	groups = {dig_immediate = 3},
+	on_rotate = screwdriver.rotate_simple,
 })
 
-minetest.register_craftitem('christmas:tree_cookie', {
+minetest.register_node('christmas:tree_cookie', {
 	description = 'Christmas Tree Cookie',
 	inventory_image = 'christmas_tree_cookie.png',
-	on_use = minetest.item_eat(3),
+	on_use = minetest.item_eat(2),
+	tiles = {
+		'christmas_tree_cookie2.png',
+		'christmas_cookie.png',
+		'christmas_cookie.png',
+		'christmas_cookie.png',
+		'christmas_cookie.png',
+		'christmas_cookie.png'
+	},
+	drawtype = 'nodebox',
+	paramtype = 'light',
+	paramtype2 = 'facedir',
+	node_box = {
+		type = 'fixed',
+		fixed = {
+			{-0.0625, -0.5, -0.125, 0.0625, -0.4375, 0.125}, 
+			{-0.125, -0.5, -0.0625, 0.125, -0.4375, 0.0625}, 
+		}
+	},
+	selection_box = {
+		type = 'fixed',
+		fixed = {-0.125, -0.5, -0.125, 0.125, -0.4375, 0.125}, 
+	},
+	groups = {dig_immediate = 3},
+	on_rotate = screwdriver.rotate_simple,
+
 })
 
-minetest.register_craftitem('christmas:gingerbread_man_cookie', {
+
+
+minetest.register_node('christmas:gingerbread_man_cookie', {
 	description = 'Gingerbread Man Cookie',
 	inventory_image = 'christmas_gingerbread_man_cookie.png',
-	on_use = minetest.item_eat(3),
+	on_use = minetest.item_eat(2),
+	tiles = {
+		'christmas_gingerbread_man_cookie2.png',
+		'christmas_cookie.png',
+		'christmas_cookie.png',
+		'christmas_cookie.png',
+		'christmas_cookie.png',
+		'christmas_cookie.png'
+	},
+	drawtype = 'nodebox',
+	paramtype = 'light',
+	paramtype2 = 'facedir',
+	node_box = {
+		type = 'fixed',
+		fixed = {
+			{-0.0625, -0.5, -0.125, 0.0625, -0.4375, 0.125}, 
+			{-0.125, -0.5, -0.0625, 0.125, -0.4375, 0.0625}, 
+		}
+	},
+	selection_box = {
+		type = 'fixed',
+		fixed = {-0.125, -0.5, -0.125, 0.125, -0.4375, 0.125}, 
+	},
+	groups = {dig_immediate = 3},
+	on_rotate = screwdriver.rotate_simple,
+
 })
 
-minetest.register_craftitem('christmas:star_cookie', {
-	description = 'Star Cookie Cutter',
+
+minetest.register_node('christmas:star_cookie', {
+	description = 'Star Cookie',
 	inventory_image = 'christmas_star_cookie.png',
-	on_use = minetest.item_eat(3),
+	on_use = minetest.item_eat(2),
+	tiles = {
+		'christmas_star_cookie2.png',
+		'christmas_cookie.png',
+		'christmas_cookie.png',
+		'christmas_cookie.png',
+		'christmas_cookie.png',
+		'christmas_cookie.png'
+	},
+	drawtype = 'nodebox',
+	paramtype = 'light',
+	paramtype2 = 'facedir',
+	node_box = {
+		type = 'fixed',
+		fixed = {
+			{-0.0625, -0.5, -0.125, 0.0625, -0.4375, 0.125}, 
+			{-0.125, -0.5, -0.0625, 0.125, -0.4375, 0.0625}, 
+		}
+	},
+	selection_box = {
+		type = 'fixed',
+		fixed = {-0.125, -0.5, -0.125, 0.125, -0.4375, 0.125}, 
+	},
+	groups = {dig_immediate = 3},
+	on_rotate = screwdriver.rotate_simple,
+
 })
 
 -----------------------
@@ -111,6 +213,12 @@ minetest.register_craft({
 	output = 'christmas:star_cutter',
 	type = 'shapeless',
 	recipe = {'christmas:gingerbread_man_cutter'},
+})
+
+minetest.register_craft({
+	output = 'christmas:candy_cane_cutter',
+	type = 'shapeless',
+	recipe = {'christmas:star_cutter'},
 })
 
 minetest.register_craft({

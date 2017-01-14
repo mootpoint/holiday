@@ -96,7 +96,7 @@ local function randomdecimal(use)
 	if use ~= 'speed' then
 		return round(final)
 	else
-		wholespeed = math.random(1, 3)
+		local wholespeed = math.random(1, 3)
 		final = wholespeed + dec
 		if final == 0 then
 			final = randomdecimal('gravity')

@@ -1,4 +1,4 @@
--- easter mod that adds easter egg easter eggs, 
+-- easter mod that adds easter egg easter eggs,
 
 -- part of the holiday modpack written by mootpoint and Foz
 
@@ -20,10 +20,10 @@ along with easter.  If not, see <http://www.gnu.org/licenses/>.
 
 -- far from a complete mod use at your own risk
 
--- first enable a few different eggs, next make some physics eggs some present eggs, last hook each egg to a different item.
+-- first enable a few different eggs, next make some physics eggs some present
+-- eggs, last hook each egg to a different item.
 
 -- egg drop function
-
 local function randomegg(egglist)
 	local droprarity = math.random(1, 50000)
 	local rarity = math.random(1, 100)
@@ -39,11 +39,11 @@ local function randomegg(egglist)
 		month = os.date('*t',now).month,
 		day = os.date('*t',now).day,
 	}]]--
-	if math.abs(now - os.time(eastertime)) > 1468800 then -- 17 day date range before and after for easter to fall
-		 
-	else 
+
+-- 17 day date range before and after for easter to fall
+	if math.abs(now - os.time(eastertime)) > 1468800 then
+	else
 		droprarity = math.random(1, 500)
-		
 	end
 
 	if droprarity < 20 then
@@ -59,7 +59,7 @@ local function randomegg(egglist)
 		elseif rarity >= 95 and rarity <= 100 then
 			droprarity, rarity = 201
 			return egglist[math.random(11, 13)]
-		else 
+		else
 			return nil
 		end
 	else
@@ -68,7 +68,6 @@ local function randomegg(egglist)
 end
 
 -- list of eggs
-
 local egglist = {
 	'easter:egg_checkered',
 	'easter:egg_white',
@@ -88,33 +87,27 @@ local egglist = {
 
 -- functions to control random numbers and random decimals
 
--- rounding function 
-
 local function round(number)
-	-- round to 2 decimal points 
+	-- round to 2 decimal points
 	return tonumber(string.format("%.2f", number))
-
 end
 
 -- generate random decimal number
-	
 local function randomdecimal(use)
-
 	local dec = math.random()
 	local whole = math.random(0, 10)
 	local final = whole + dec
 	if use ~= 'speed' then
 		return round(final)
-	else 
+	else
 		wholespeed = math.random(1, 3)
 		final = wholespeed + dec
-		if final == 0 then 
+		if final == 0 then
 			final = randomdecimal('gravity')
 		end
 		return round(final)
 	end
 end
-
 
 -- generate items for rare and common
 
@@ -138,7 +131,6 @@ local common = {
 	'default:gravel',
 	'default:sand',
 	'tool',
-
 }
 
 local commontools ={
@@ -170,24 +162,9 @@ local uncommon = {
 
 local rare = {
 	'default:mese',
-	'default:diamondblock', 
+	'default:diamondblock',
 	'default:goldblock',
 	'tool'
-
-}
-
-
-
-local commontools ={
-	'default:shovel_wood',
-	'default:axe_wood',
-	'default:pick_wood',
-	'default:shovel_stone',
-	'default:axe_stone',
-	'default:pick_stone',
-	'default:shovel_steel',
-	'default:axe_steel',
-	'default:pick_steel',
 }
 
 local uncommon = {
@@ -207,10 +184,9 @@ local uncommon = {
 
 local rare = {
 	'default:mese',
-	'default:diamondblock', 
+	'default:diamondblock',
 	'default:goldblock',
 	'tool'
-
 }
 
 local raretools = {
@@ -224,8 +200,6 @@ local uncommontools = {
 	'default:axe_diamond',
 	'default:pick_diamond',
 }
-
-
 
 local commondistribution = {1, 1, 1, 2, 2, 3}
 
@@ -243,18 +217,14 @@ minetest.register_craftitem('easter:egg_black', {
 		if chance == 1 then
 			user:set_hp(user:get_hp() + 20)
 			minetest.chat_send_player(user:get_player_name(), 'You have been healed.')
-
 			return itemstack
-		else			
+		else
 			minetest.after(0.1, function()
 				user:set_hp(user:get_hp() - 20)
 			end)
 			return itemstack
-			
 		end
-		
 	end
-			
 })
 
 minetest.register_craftitem('easter:egg_checkered', {
@@ -272,38 +242,42 @@ minetest.register_craftitem('easter:egg_checkered', {
 			local toolnum1 = math.random(7, 9)
 			if amount == 1 then
 				item = commontools[toolnum1]
-                        	if inv:room_for_item('main', item) then
+				if inv:room_for_item('main', item) then
 					user:get_inventory():add_item('main', item)
 					itemstack:take_item()
-		 			minetest.chat_send_player(user:get_player_name(), 'This egg just gave you '..item..'.')
+					minetest.chat_send_player(user:get_player_name(),
+						'This egg just gave you '..item..'.')
 					return itemstack
 				end
-			
 			elseif amount == 2 then
 				item = commontools[toolnum2]
-                        	if inv:room_for_item('main', item) then
+				if inv:room_for_item('main', item) then
 					user:get_inventory():add_item('main', item)
 					itemstack:take_item()
-		 			minetest.chat_send_player(user:get_player_name(), 'This egg just gave you '..item..'.')
+					minetest.chat_send_player(user:get_player_name(),
+						'This egg just gave you '..item..'.')
 					return itemstack
 				end
 			else
 				item = commontools[toolnum3]
-                        	if inv:room_for_item('main', item) then
+				if inv:room_for_item('main', item) then
 					user:get_inventory():add_item('main', item)
 					itemstack:take_item()
-		 			minetest.chat_send_player(user:get_player_name(), 'This egg just gave you '..item..'.')
+					minetest.chat_send_player(user:get_player_name(),
+						'This egg just gave you '..item..'.')
 					return itemstack
 				end
 			end
 		elseif  inv:room_for_item('main', item..' '..amount) then
 			user:get_inventory():add_item('main', item..' '..amount)
 			itemstack:take_item()
-		 	minetest.chat_send_player(user:get_player_name(), 'This egg just gave you '..amount..' '..item..'.')
+			minetest.chat_send_player(user:get_player_name(),
+				'This egg just gave you '..amount..' '..item..'.')
 			return itemstack
-				
 		else
-			minetest.chat_send_player(user:get_player_name(), 'You may want to make room in your inventory before trying that. I dont know what this thing does, but i think you need space.')
+			minetest.chat_send_player(user:get_player_name(),
+				'You may want to make room in your inventory before trying that. '..
+				'I dont know what this thing does, but i think you need space.')
 		end
 	end
 })
@@ -311,7 +285,6 @@ minetest.register_craftitem('easter:egg_checkered', {
 minetest.register_craftitem('easter:egg_diamond', {
 	description = 'Easter Egg Diamond',
 	inventory_image = 'easter_egg_diamond.png',
-
 	groups = {not_in_creative_inventory = 1,},
 	--gift semi rare object
 	on_use = function(itemstack, user)
@@ -321,20 +294,23 @@ minetest.register_craftitem('easter:egg_diamond', {
 		if item == 'tool' then
 			local toolnum1 = math.random(1, 3)
 			item = uncommontools[toolnum1]
-                       	if inv:room_for_item('main', item) then
+			if inv:room_for_item('main', item) then
 				user:get_inventory():add_item('main', item)
 				itemstack:take_item()
-	 			minetest.chat_send_player(user:get_player_name(), 'This egg just gave you '..item..'.')
+				minetest.chat_send_player(user:get_player_name(),
+					'This egg just gave you '..item..'.')
 				return itemstack
 			end
 		elseif  inv:room_for_item('main', item..' '..amount) then
 			user:get_inventory():add_item('main', item..' '..amount)
 			itemstack:take_item()
-		 	minetest.chat_send_player(user:get_player_name(), 'This egg just gave you '..amount..' '..item..'.')
+			minetest.chat_send_player(user:get_player_name(),
+				'This egg just gave you '..amount..' '..item..'.')
 			return itemstack
-				
 		else
-			minetest.chat_send_player(user:get_player_name(), 'You may want to make room in your inventory before trying that. I dont know what this thing does, but i think you need space.')
+			minetest.chat_send_player(user:get_player_name(),
+				'You may want to make room in your inventory before trying that. '..
+				'I dont know what this thing does, but i think you need space.')
 		end
 	end
 })
@@ -355,8 +331,11 @@ minetest.register_craftitem('easter:egg_speed', {
 	on_use = function(itemstack, user)
 		local random = randomdecimal('speed')
 		user:set_physics_override({speed = random})
-		minetest.chat_send_player(user:get_player_name(), 'Your speed was set to : ' ..random..'.')
-		minetest.chat_send_player(user:get_player_name(), 'Alright, this one is like the flash, i guess. Unless your slow, then its like a snail.')
+		minetest.chat_send_player(user:get_player_name(),
+			'Your speed was set to : ' ..random..'.')
+		minetest.chat_send_player(user:get_player_name(),
+			'Alright, this one is like the flash, i guess. '..
+			'Unless your slow, then its like a snail.')
 		itemstack:take_item()
 		return itemstack
 	end
@@ -369,10 +348,10 @@ minetest.register_craftitem('easter:egg_mario', {
 	--Mario
 	on_use = function(itemstack, user)
 			user:set_physics_override({jump = 1.7})
-			minetest.chat_send_player(user:get_player_name(),'So this Egg makes you jump like Mario!. cool')	
+			minetest.chat_send_player(user:get_player_name(),
+				'So this Egg makes you jump like Mario!. cool')
 			itemstack:take_item()
 			return itemstack
-		
 	end
 })
 
@@ -388,20 +367,23 @@ minetest.register_craftitem('easter:egg_mese', {
 		if item == 'tool' then
 			local toolnum1 = math.random(1, 3)
 			item = raretools[toolnum1]
-                       	if inv:room_for_item('main', item) then
+			if inv:room_for_item('main', item) then
 				user:get_inventory():add_item('main', item)
 				itemstack:take_item()
-	 			minetest.chat_send_player(user:get_player_name(), 'This egg just gave you '..item..'.')
+				minetest.chat_send_player(user:get_player_name(),
+					'This egg just gave you '..item..'.')
 				return itemstack
 			end
 		elseif  inv:room_for_item('main', item..' '..amount) then
 			user:get_inventory():add_item('main', item..' '..amount)
 			itemstack:take_item()
-		 	minetest.chat_send_player(user:get_player_name(), 'This egg just gave you '..amount..' '..item..'.')
+			minetest.chat_send_player(user:get_player_name(),
+				'This egg just gave you '..amount..' '..item..'.')
 			return itemstack
-				
 		else
-			minetest.chat_send_player(user:get_player_name(), 'You may want to make room in your inventory before trying that. I dont know what this thing does, but i think you need space.')
+			minetest.chat_send_player(user:get_player_name(),
+				'You may want to make room in your inventory before trying that. '..
+				'I dont know what this thing does, but i think you need space.')
 		end
 	end
 })
@@ -413,18 +395,15 @@ minetest.register_craftitem('easter:egg_space', {
 	groups = {not_in_creative_inventory = 1,},
 	--moon boots
 	on_use = function(itemstack, user)
-			
 			user:set_physics_override({gravity = 0.165})
-			minetest.chat_send_player(user:get_player_name(),'Wow! That egg gave you Moon Boots!')	
-			
+			minetest.chat_send_player(user:get_player_name(),
+				'Wow! That egg gave you Moon Boots!')
 			itemstack:take_item()
 			return itemstack
-		
 	end
-
 })
--- random gravity egg
 
+-- random gravity egg
 minetest.register_craftitem('easter:egg_striped', {
 	description = 'Easter Egg Striped',
 	inventory_image = 'easter_egg_striped.png',
@@ -433,14 +412,17 @@ minetest.register_craftitem('easter:egg_striped', {
 	on_use = function(itemstack, user)
 		local random = randomdecimal('gravity')
 		user:set_physics_override({gravity = random})
-		minetest.chat_send_player(user:get_player_name(), 'This egg just set your Gravity to : '..random)
+		minetest.chat_send_player(user:get_player_name(),
+			'This egg just set your Gravity to : '..random)
 		itemstack:take_item()
 		local normal = function()
 			user:set_physics_override({gravity = 1})
-			minetest.chat_send_player(user:get_player_name(), 'Wow, That egg was dangerous. We better put you back to normal before you fly off or implode.')
+			minetest.chat_send_player(user:get_player_name(),
+				'Wow, That egg was dangerous. '..
+				'We better put you back to normal before you fly off or implode.')
 		end
 		minetest.after(30, normal)
-		return itemstack  
+		return itemstack
 	end
 })
 
@@ -451,7 +433,8 @@ minetest.register_craftitem('easter:egg_time', {
 	-- set day
 	on_use = function(itemstack, user)
 		minetest.set_timeofday(0.23)
-		minetest.chat_send_player(user:get_player_name(), 'This Egg must be magic! it made it Day Time!!!!')
+		minetest.chat_send_player(user:get_player_name(),
+			'This Egg must be magic! it made it Day Time!!!!')
 		itemstack:take_item()
 		return itemstack
 	end
@@ -466,7 +449,8 @@ minetest.register_craftitem('easter:egg_white', {
 		local light = (minetest.get_timeofday()*2)
 		user:set_physics_override(1, 1, 1)
 		user:override_day_night_ratio(nil)
-		minetest.chat_send_player(user:get_player_name(), 'This egg tastes Normal... like vanilla')
+		minetest.chat_send_player(user:get_player_name(),
+			'This egg tastes Normal... like vanilla')
 		minetest.do_item_eat(2,nil,itemstack,user)
 		return itemstack
 	end
@@ -486,9 +470,9 @@ minetest.register_craftitem('easter:egg_night', {
 			user:override_day_night_ratio((light)-0.4)
 		end
 		return itemstack
-
 	end,
 })
+
 minetest.register_craftitem('easter:egg_zig_zag', {
 	description = 'Easter Egg Zig Zag',
 	inventory_image = 'easter_egg_zig_zag.png',
@@ -518,13 +502,10 @@ minetest.register_craftitem('easter:egg_zig_zag', {
 		else
 			user:setpos( { x=-166, y=-103, z=276 } ) -- Headache Room in hd's castle
 		end
-		
 		return itemstack
-
 	end
-		
 })
-			
+
 minetest.override_item('default:stone', {
 	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		local egg = randomegg(egglist)
@@ -536,6 +517,3 @@ minetest.override_item('default:stone', {
 			end
 	end
 })
-			
-		
-		

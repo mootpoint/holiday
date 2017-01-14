@@ -48,16 +48,12 @@ local function randomegg(egglist)
 
 	if droprarity < 20 then
 		if rarity < 40 then
-			droprarity, rarity = 201
 			return egglist[math.random(1, 4)]
 		elseif rarity >= 40 and rarity < 90 then
-			droprarity, rarity = 201
 			return egglist[math.random(5, 7)]
 		elseif rarity >= 90 and rarity < 95 then
-			droprarity, rarity = 201
 			return egglist[math.random(8, 10)]
 		elseif rarity >= 95 and rarity <= 100 then
-			droprarity, rarity = 201
 			return egglist[math.random(11, 13)]
 		else
 			return nil
@@ -424,7 +420,6 @@ minetest.register_craftitem('easter:egg_white', {
 	groups = {not_in_creative_inventory = 1,},
 	-- set physics to normal
 	on_use = function(itemstack, user)
-		local light = (minetest.get_timeofday()*2)
 		user:set_physics_override(1, 1, 1)
 		user:override_day_night_ratio(nil)
 		minetest.chat_send_player(user:get_player_name(),

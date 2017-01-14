@@ -80,31 +80,6 @@ local egglist = {
 	'easter:egg_mese',
 }
 
-
--- functions to control random numbers and random decimals
-
-local function round(number)
-	-- round to 2 decimal points
-	return tonumber(string.format("%.2f", number))
-end
-
--- generate random decimal number
-local function randomdecimal(use)
-	local dec = math.random()
-	local whole = math.random(0, 10)
-	local final = whole + dec
-	if use ~= 'speed' then
-		return round(final)
-	else
-		local wholespeed = math.random(1, 3)
-		final = wholespeed + dec
-		if final == 0 then
-			final = randomdecimal('gravity')
-		end
-		return round(final)
-	end
-end
-
 -- generate items for rare and common
 
 local common = {
@@ -303,7 +278,12 @@ minetest.register_craftitem('easter:egg_speed', {
 	groups = {not_in_creative_inventory = 1,},
 	--speed
 	on_use = function(itemstack, user)
-		local random = randomdecimal('speed')
+		-- Pick new speed in [0.2,0.9] or [1.1,3]
+		if math.random(0,2) == 0 then
+			random = math.random(20,90)/100
+		else
+			random = math.random(110,300)/100
+		end
 		user:set_physics_override({speed = random})
 		minetest.chat_send_player(user:get_player_name(),
 			'Your speed was set to : ' ..random..'.')
@@ -384,7 +364,12 @@ minetest.register_craftitem('easter:egg_striped', {
 	groups = {not_in_creative_inventory = 1,},
 	-- Random Gravity
 	on_use = function(itemstack, user)
-		local random = randomdecimal('gravity')
+		-- Pick new gravity in [0.1,0.9] or [1.1,10]
+		if math.random(0,1) == 0 then
+			random = math.random(10,90)/100
+		else
+			random = math.random(110,1000)/100
+		end
 		user:set_physics_override({gravity = random})
 		minetest.chat_send_player(user:get_player_name(),
 			'This egg just set your Gravity to : '..random)

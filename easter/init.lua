@@ -133,6 +133,28 @@ local common = {
 	'tool',
 }
 
+local uncommon = {
+	'default:diamond',
+	'default:obsidian',
+	'default:obsidian_glass',
+	'default:obsidian_block',
+	'default:steelblock',
+	'default:gold_lump',
+	'default:gold_ingot',
+	'default:mese_crystal_fragment',
+	'default:mese_crystal',
+	'default:flint',
+	'default:coalblock',
+	'tool',
+}
+
+local rare = {
+	'default:mese',
+	'default:diamondblock',
+	'default:goldblock',
+	'tool'
+}
+
 local commontools ={
 	'default:shovel_wood',
 	'default:axe_wood',
@@ -145,60 +167,16 @@ local commontools ={
 	'default:pick_steel',
 }
 
-local uncommon = {
-	'default:diamond',
-	'default:obsidian',
-	'default:obsidian_glass',
-	'default:obsidian_block',
-	'default:steelblock',
-	'default:gold_lump',
-	'default:gold_ingot',
-	'default:mese_crystal_fragment',
-	'default:mese_crystal',
-	'default:flint',
-	'default:coalblock',
-	'tool',
-}
-
-local rare = {
-	'default:mese',
-	'default:diamondblock',
-	'default:goldblock',
-	'tool'
-}
-
-local uncommon = {
-	'default:diamond',
-	'default:obsidian',
-	'default:obsidian_glass',
-	'default:obsidian_block',
-	'default:steelblock',
-	'default:gold_lump',
-	'default:gold_ingot',
-	'default:mese_crystal_fragment',
-	'default:mese_crystal',
-	'default:flint',
-	'default:coalblock',
-	'tool',
-}
-
-local rare = {
-	'default:mese',
-	'default:diamondblock',
-	'default:goldblock',
-	'tool'
+local uncommontools = {
+	'default:shovel_diamond',
+	'default:axe_diamond',
+	'default:pick_diamond',
 }
 
 local raretools = {
 	'default:shovel_mese',
 	'default:axe_mese',
 	'default:pick_mese',
-}
-
-local uncommontools = {
-	'default:shovel_diamond',
-	'default:axe_diamond',
-	'default:pick_diamond',
 }
 
 local commondistribution = {1, 1, 1, 2, 2, 3}

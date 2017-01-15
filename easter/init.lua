@@ -23,47 +23,6 @@ along with easter.  If not, see <http://www.gnu.org/licenses/>.
 -- first enable a few different eggs, next make some physics eggs some present
 -- eggs, last hook each egg to a different item.
 
--- egg drop function
-local function randomegg(egglist)
-	local droprarity = math.random(1, 50000)
-	local rarity = math.random(1, 100)
-	local now = os.time()
-	local eastertime = {
-		year = os.date('*t',now).year,
-		month = 04,
-		day = 08,
-	}
-	--[[
-	local eastertime = {
-		year = os.date('*t',now).year,
-		month = os.date('*t',now).month,
-		day = os.date('*t',now).day,
-	}]]--
-
--- 17 day date range before and after for easter to fall
-	if math.abs(now - os.time(eastertime)) > 1468800 then
-	else
-		droprarity = math.random(1, 500)
-	end
-
-	if droprarity < 20 then
-		if rarity < 40 then
-			return egglist[math.random(1, 4)]
-		elseif rarity >= 40 and rarity < 90 then
-			return egglist[math.random(5, 7)]
-		elseif rarity >= 90 and rarity < 95 then
-			return egglist[math.random(8, 10)]
-		elseif rarity >= 95 and rarity <= 100 then
-			return egglist[math.random(11, 13)]
-		else
-			return nil
-		end
-	else
-		return nil
-	end
-end
-
--- list of eggs
 local egglist = {
 	'easter:egg_checkered',
 	'easter:egg_white',
@@ -79,6 +38,30 @@ local egglist = {
 	'easter:egg_time',
 	'easter:egg_mese',
 }
+
+local randomegg = function()
+	local rarity = 2500
+	local year = os.date('*t').year
+	local march22 = os.time({year = year, month = 03, day = 22, hour = 0 })
+	local april25 = os.time({year = year, month = 04, day = 25, hour = 24})
+	local now = os.time()
+	if march22 < now and now < april25 then
+		rarity = 25
+	end
+
+	local roll = math.random(0,rarity*100)
+	if roll <= 100 then
+		if roll < 40 then -- 40% chance
+			return egglist[math.random(1, 4)]
+		elseif roll < 90 then -- 50% chance
+			return egglist[math.random(5, 7)]
+		elseif roll < 95 then -- 5% chance
+			return egglist[math.random(8, 10)]
+		else -- 6% chance
+			return egglist[math.random(11, 13)]
+		end
+	end
+end
 
 -- generate items for rare and common
 

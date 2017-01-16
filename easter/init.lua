@@ -9,7 +9,7 @@ easter is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
-Stats is distributed in the hope that it will be useful,
+easter is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
@@ -18,19 +18,19 @@ along with easter.  If not, see <http://www.gnu.org/licenses/>.
 --]]
 
 local egglist = {
-	'easter:egg_checkered',
-	'easter:egg_white',
-	'easter:egg_food',
-	'easter:egg_space',
-	'easter:egg_mario',
-	'easter:egg_speed',
-	'easter:egg_striped',
-	'easter:egg_zig_zag',
-	'easter:egg_night',
-	'easter:egg_diamond',
-	'easter:egg_black',
-	'easter:egg_time',
-	'easter:egg_mese',
+	'easter:egg_white', -- normal resets back to normal -- start common 1
+	'easter:egg_food', -- just food 2
+	'easter:egg_space', -- mb 3
+	'easter:egg_mario', -- mario jump 4
+	'easter:egg_speed', -- random speed variable 5
+	'easter:egg_checkered', -- common items -- end common list 6
+	'easter:egg_striped', -- random gravity -- uncommon 7
+	'easter:egg_zig_zag', -- random teleportation 8  
+	'easter:egg_night', -- make player see either night or day w/o changing server time -- end uncommon 9
+	'easter:egg_diamond', -- give semi rare things -- rare 10
+	'easter:egg_black', -- kill or heal -- end rare 11
+	'easter:egg_time', -- set server time to day -- superrare 12
+	'easter:egg_mese', -- grants rare blocks -- end superrare 13
 }
 
 local randomegg = function()
@@ -46,13 +46,13 @@ local randomegg = function()
 	local roll = math.random(0,rarity*100)
 	if roll <= 100 then
 		if roll < 40 then -- 40% chance
-			return egglist[math.random(1, 4)]
+			return egglist[math.random(1, 7)]
 		elseif roll < 90 then -- 50% chance
-			return egglist[math.random(5, 7)]
+			return egglist[math.random(7, 9)]
 		elseif roll < 95 then -- 5% chance
-			return egglist[math.random(8, 10)]
+			return egglist[math.random(10, 11)]
 		else -- 6% chance
-			return egglist[math.random(11, 13)]
+			return egglist[math.random(12, 13)]
 		end
 	end
 end
@@ -117,9 +117,6 @@ local rare = {
 }
 
 local commontools ={
-	'default:shovel_wood',
-	'default:axe_wood',
-	'default:pick_wood',
 	'default:shovel_stone',
 	'default:axe_stone',
 	'default:pick_stone',
@@ -291,13 +288,15 @@ minetest.register_craftitem('easter:egg_striped', {
 		user:set_physics_override({gravity = random})
 		minetest.chat_send_player(user:get_player_name(),
 			'This egg just set your Gravity to : '..random)
-		local normal = function()
-			user:set_physics_override({gravity = 1})
-			minetest.chat_send_player(user:get_player_name(),
-				'Wow, That egg was dangerous. '..
-				'We better put you back to normal before you fly off or implode.')
+		local normal = function(random)
+			if random > 2 then
+				user:set_physics_override({gravity = 1})
+				minetest.chat_send_player(user:get_player_name(),
+					'Wow, That egg was dangerous. '..
+					'We better put you back to normal before you fly off or implode.')
+			end
 		end
-		minetest.after(30, normal)
+		minetest.after(30, normal(random))
 		itemstack:take_item()
 		return itemstack
 	end
